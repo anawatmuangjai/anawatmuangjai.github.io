@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@theme {
+  --color-cozy-brown-50: #fdf8f6;
+  --color-cozy-brown-100: #f2e8e2;
+  --color-cozy-brown-200: #eaddd5;
+  --color-cozy-brown-300: #d1bab0;
+  --color-cozy-brown-400: #b39488;
+  --color-cozy-brown-500: #9d7968;
+  --color-cozy-brown-600: #8b6f61;
+  --color-cozy-brown-700: #735c52;
+  --color-cozy-brown-800: #5f4e47;
+  --color-cozy-brown-900: #4f423c;
+
+  --color-cozy-cream-50: #fefdf9;
+  --color-cozy-cream-100: #fbf7ec;
+  --color-cozy-cream-200: #f7f0d9;
+  --color-cozy-cream-300: #f0e4bd;
+  --color-cozy-cream-400: #e7d29d;
+  --color-cozy-cream-500: #dabf82;
+  --color-cozy-cream-600: #c5a66b;
+  --color-cozy-cream-700: #a5895a;
+  --color-cozy-cream-800: #866f4d;
+  --color-cozy-cream-900: #6d5b42;
+
+  --color-cozy-orange-50: #fff7ed;
+  --color-cozy-orange-100: #ffedd5;
+  --color-cozy-orange-200: #fed7aa;
+  --color-cozy-orange-300: #fdba74;
+  --color-cozy-orange-400: #fb923c;
+  --color-cozy-orange-500: #f97316;
+  --color-cozy-orange-600: #ea580c;
+  --color-cozy-orange-700: #c2410c;
+  --color-cozy-orange-800: #9a3412;
+  --color-cozy-orange-900: #7c2d12;
+
+  --font-family-sans: Inter, system-ui, sans-serif;
+  --font-family-serif: Merriweather, Georgia, serif;
+}
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-cozy-cream-50 dark:bg-cozy-brown-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-cozy-brown-400 dark:bg-cozy-brown-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-cozy-brown-500 dark:bg-cozy-brown-500;
+}
+
+/* Focus styles for accessibility */
+.focus-cozy {
+  @apply focus:outline-none focus:ring-2 focus:ring-cozy-orange-400 focus:ring-offset-2 focus:ring-offset-cozy-cream-50 dark:focus:ring-offset-cozy-brown-900;
+}
