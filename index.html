@@ -1,200 +1,39 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" />
-    <link
-      rel="apple-touch-icon"
-      sizes="76x76"
-      href="./assets/img/apple-icon.png"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/creativetimofficial/tailwind-starter-kit/compiled-tailwind.min.css"
-    />
-    <title>Hi there, I'm Anawat</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-icon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Anawat Muangjai - Software Developer Portfolio</title>
+    <meta name="description" content="Cozy portfolio of Anawat Muangjai – projects, APIs, and documentation. Full-stack developer with 8 years of experience in C# and .NET technologies." />
+    <meta name="keywords" content="Anawat Muangjai, Software Developer, C# Developer, .NET, Full Stack Developer, React, TypeScript, API Development" />
+    <meta name="author" content="Anawat Muangjai" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Anawat Muangjai - Software Developer Portfolio" />
+    <meta property="og:description" content="Cozy portfolio of Anawat Muangjai – projects, APIs, and documentation. Full-stack developer with 8 years of experience in C# and .NET technologies." />
+    <meta property="og:image" content="/img/am.jpg" />
+    <meta property="og:url" content="https://anawatmuangjai.github.io" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Anawat Muangjai - Software Developer Portfolio" />
+    <meta name="twitter:description" content="Cozy portfolio of Anawat Muangjai – projects, APIs, and documentation." />
+    <meta name="twitter:image" content="/img/am.jpg" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#f97316" />
+    <meta name="msapplication-TileColor" content="#f97316" />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://anawatmuangjai.github.io" />
   </head>
-  <body class="text-gray-800 antialiased">
-    <nav
-      class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3"
-    >
-      <div
-        class="container px-4 mx-auto flex flex-wrap items-center justify-between"
-      >
-        <div
-          class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start"
-        >
-          <button
-            class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none"
-            type="button"
-            onclick="toggleNavbar('example-collapse-navbar')"
-          >
-            <i class="text-white fas fa-bars"></i>
-          </button>
-        </div>
-        <div
-          class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none hidden"
-          id="example-collapse-navbar"
-        >
-          <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
-            <li class="flex items-center">
-              <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://www.facebook.com/anawat.muangjai"
-                ><i
-                  class="lg:text-white text-gray-500 fab fa-facebook text-lg leading-lg"
-                ></i
-                ><span class="lg:hidden inline-block ml-2">Facebook</span></a
-              >
-            </li>
-            <li class="flex items-center">
-              <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://www.linkedin.com/in/anawatse/"
-                ><i
-                  class="lg:text-white text-gray-500 fab fa-linkedin text-lg leading-lg"
-                ></i
-                ><span class="lg:hidden inline-block ml-2">Linkedin</span></a
-              >
-            </li>
-            <li class="flex items-center">
-              <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://github.com/anawatmuangjai"
-                ><i
-                  class="lg:text-white text-gray-500 fab fa-github text-lg leading-lg"
-                ></i
-                ><span class="lg:hidden inline-block ml-2">Github</span></a
-              >
-            </li>
-            <li class="flex items-center">
-              <a
-                class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
-                href="https://anawat-muangjai.gitbook.io/software-development/"
-                ><i
-                  class="lg:text-white text-gray-500 fab fa fa-book text-lg leading-lg"
-                ></i
-                ><span class="lg:hidden inline-block ml-2">GitBook</span></a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <main class="profile-page">
-      <section class="relative block" style="height: 500px">
-        <div
-          class="absolute top-0 w-full h-full bg-center bg-cover"
-          style="
-            background-image: url('https://images.unsplash.com/photo-1554147090-e1221a04a025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1148&q=80');
-          "
-        >
-          <span
-            id="blackOverlay"
-            class="w-full h-full absolute opacity-5 bg-white"
-          ></span>
-        </div>
-        <div
-          class="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-          style="height: 70px"
-        >
-          <svg
-            class="absolute bottom-0 overflow-hidden"
-            xmlns="http://www.w3.org/2000/svg"
-            preserveAspectRatio="none"
-            version="1.1"
-            viewBox="0 0 2560 100"
-            x="0"
-            y="0"
-          >
-            <polygon
-              class="text-gray-300 fill-current"
-              points="2560 0 2560 100 0 100"
-            ></polygon>
-          </svg>
-        </div>
-      </section>
-      <section class="relative py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-          <div
-            class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64"
-          >
-            <div class="px-6">
-              <div class="flex flex-wrap justify-center">
-                <div
-                  class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center"
-                >
-                  <div class="relative">
-                    <img
-                      alt="..."
-                      src="./assets/img/am.jpg"
-                      class="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
-                      style="max-width: 150px"
-                    />
-                  </div>
-                </div>
-              </div>
-              <div class="text-center mt-32">
-                <h3
-                  class="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2"
-                >
-                  ANAWAT MUANGJAI
-                </h3>
-                <div class="mb-2 text-gray-700 mt-10">
-                  <i class="fas fa-briefcase mr-2 text-lg text-gray-500"></i
-                  >Software Developer - C# Developer
-                </div>
-                <div
-                  class="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase"
-                >
-                  <i
-                    class="fas fa-map-marker-alt mr-2 text-lg text-gray-500"
-                  ></i>
-                  Bangkok, Thailand
-                </div>
-              </div>
-              <div class="mt-10 py-10 border-t border-gray-300 text-center">
-                <div class="flex flex-wrap justify-center">
-                  <div class="w-full lg:w-9/12 px-4">
-                    <p class="mb-4 text-lg leading-relaxed text-gray-800">
-                      8 years of experience designing and developing
-                      applications based on Microsoft .NET technology. An expert
-                      in C# languages, with strong design skills, a wealth of
-                      software development knowledge and powerful problem
-                      solving abilities.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-    <footer class="relative bg-gray-100 pt-8 pb-2">
-      <div class="container mx-auto px-0">
-        <div
-          class="flex flex-wrap items-center md:justify-between justify-center"
-        >
-          <div class="w-full md:w-4/12 px-4 mx-auto text-center">
-            <div class="text-sm text-gray-600 font-semibold py-1">
-              anawat.muangjai@gmail.com
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
-  <script>
-    function toggleNavbar(collapseID) {
-      document.getElementById(collapseID).classList.toggle("hidden");
-      document.getElementById(collapseID).classList.toggle("block");
-    }
-  </script>
 </html>
