@@ -21,23 +21,75 @@ export function About({
             <div className="bg-primary-600 mx-auto h-1 w-24"></div>
           </div>
 
-          <div className="grid items-start gap-12 lg:grid-cols-2">
-            {/* Professional Summary */}
+          <div className="grid items-start gap-16 lg:grid-cols-2">
+            {/* Left Column: Profile & Info */}
             <div className="space-y-8">
-              <div className="space-y-6">
+              {/* Profile Image */}
+              <div className="flex justify-center lg:justify-start">
+                <div className="group relative">
+                  <div className="from-primary-400 to-primary-600 absolute -inset-4 rounded-full bg-gradient-to-r opacity-20 blur transition duration-300 group-hover:opacity-30"></div>
+                  <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-xl">
+                    <img
+                      src="/img/am.jpg"
+                      alt="Anawat Muangjai - Full Stack Developer"
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="to-primary-500/10 absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-transparent"></div>
+                  </div>
+
+                  {/* Status Badge */}
+                  <div className="absolute right-4 bottom-4 flex items-center space-x-2 rounded-full border bg-white px-3 py-2 shadow-lg">
+                    <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
+                    <span className="text-sm font-medium text-neutral-700">Available for work</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Introduction */}
+              <div className="space-y-6 text-center lg:text-left">
+                <div>
+                  <h3 className="mb-2 text-2xl font-bold text-neutral-900">Hello, I'm Anawat 👋</h3>
+                  <p className="text-primary-600 text-lg font-medium">
+                    Full Stack Developer & Problem Solver
+                  </p>
+                </div>
+
                 <p className="text-lg leading-relaxed text-balance text-neutral-600">
                   {description}
                 </p>
 
+                {/* Quick Highlights */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
+                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
+                      <span className="text-primary-600 text-sm">🎯</span>
+                    </div>
+                    <span className="text-neutral-700">Focused on clean, scalable solutions</span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
+                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
+                      <span className="text-primary-600 text-sm">🚀</span>
+                    </div>
+                    <span className="text-neutral-700">
+                      Passionate about modern web technologies
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
+                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
+                      <span className="text-primary-600 text-sm">💡</span>
+                    </div>
+                    <span className="text-neutral-700">Always learning and sharing knowledge</span>
+                  </div>
+                </div>
+
                 {/* CTA Button */}
-                <div className="pt-2">
+                <div className="pt-4">
                   <a
                     href="#contact"
                     className={cn(
                       'inline-flex items-center',
-                      'text-primary-600 px-8 py-3 font-semibold',
-                      'border-primary-600 rounded-lg border-2',
-                      'hover:bg-primary-600 hover:text-white',
+                      'bg-primary-600 rounded-lg px-8 py-3 font-semibold text-white',
+                      'hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg',
                       'transition-all duration-200'
                     )}
                   >
@@ -57,29 +109,34 @@ export function About({
                     </svg>
                   </a>
                 </div>
-              </div>
 
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-6 text-center">
-                <div>
-                  <div className="text-primary-600 text-2xl font-bold">5+</div>
-                  <div className="text-sm text-neutral-600">Years Experience</div>
-                </div>
-                <div>
-                  <div className="text-primary-600 text-2xl font-bold">20+</div>
-                  <div className="text-sm text-neutral-600">Projects Delivered</div>
-                </div>
-                <div>
-                  <div className="text-primary-600 text-2xl font-bold">10+</div>
-                  <div className="text-sm text-neutral-600">Technologies Mastered</div>
+                {/* Quick Stats */}
+                <div className="grid grid-cols-3 gap-4 pt-6">
+                  <div className="text-center lg:text-left">
+                    <div className="text-primary-600 text-3xl font-bold">5+</div>
+                    <div className="text-sm text-neutral-600">Years Experience</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-primary-600 text-3xl font-bold">20+</div>
+                    <div className="text-sm text-neutral-600">Projects Delivered</div>
+                  </div>
+                  <div className="text-center lg:text-left">
+                    <div className="text-primary-600 text-3xl font-bold">10+</div>
+                    <div className="text-sm text-neutral-600">Technologies</div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Experience Timeline */}
-            <div>
-              <h3 className="mb-8 text-2xl font-bold text-neutral-900">Experience Timeline</h3>
-              <ExperienceTimeline experiences={experiences} />
+            {/* Right Column: Experience Timeline */}
+            <div className="lg:pl-8">
+              <div className="sticky top-8">
+                <h3 className="mb-8 flex items-center text-2xl font-bold text-neutral-900">
+                  <span className="mr-3">💼</span>
+                  Experience Journey
+                </h3>
+                <ExperienceTimeline experiences={experiences} />
+              </div>
             </div>
           </div>
         </div>
