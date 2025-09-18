@@ -3,6 +3,7 @@ import { Hero } from '@/components/Hero';
 import { About } from '@/components/About';
 import { Skills } from '@/components/Skills';
 import { FeaturedProjects } from '@/components/FeaturedProjects';
+import { CodeSamples } from '@/components/CodeSamples';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <About />
       <Skills />
       <FeaturedProjects />
+      <CodeSamples />
 
       <section id="contact" className="bg-neutral-50 py-20">
         <div className="container mx-auto px-4 text-center">

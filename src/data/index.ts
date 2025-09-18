@@ -1,4 +1,4 @@
-import type { Project, Skill, ContactInfo, NavigationItem } from '@/types';
+import type { Project, Skill, ContactInfo, NavigationItem, Experience } from '@/types';
 
 // Navigation data
 export const navigationItems: NavigationItem[] = [
@@ -6,6 +6,7 @@ export const navigationItems: NavigationItem[] = [
   { id: 'about', label: 'About', href: '#about' },
   { id: 'skills', label: 'Skills', href: '#skills' },
   { id: 'projects', label: 'Projects', href: '#projects' },
+  { id: 'code-samples', label: 'Code', href: '#code-samples' },
   { id: 'contact', label: 'Contact', href: '#contact' },
 ];
 
@@ -159,6 +160,58 @@ export const skills: Skill[] = [
   { id: 'git', name: 'Git', category: 'tools', proficiency: 'expert' },
   { id: 'docker', name: 'Docker', category: 'tools', proficiency: 'advanced' },
   { id: 'vscode', name: 'VS Code', category: 'tools', proficiency: 'expert' },
+];
+
+// Experience data
+export const experiences: Experience[] = [
+  {
+    id: 'senior-fullstack-dev',
+    title: 'Senior Full Stack Developer',
+    company: 'Tech Solutions Co.',
+    location: 'Bangkok, Thailand',
+    startDate: '2022-01',
+    endDate: null, // Current position
+    description:
+      'Leading development of scalable web applications using React, TypeScript, and .NET Core.',
+    achievements: [
+      'Architected and delivered 3 major client projects increasing revenue by 40%',
+      'Mentored 5 junior developers and established code review processes',
+      'Reduced application load times by 60% through performance optimization',
+    ],
+    technologies: ['React', 'TypeScript', '.NET Core', 'Azure', 'SQL Server'],
+  },
+  {
+    id: 'fullstack-dev',
+    title: 'Full Stack Developer',
+    company: 'Digital Agency Ltd.',
+    location: 'Bangkok, Thailand',
+    startDate: '2020-03',
+    endDate: '2021-12',
+    description:
+      'Developed responsive web applications and RESTful APIs for various client projects.',
+    achievements: [
+      'Built 10+ responsive websites with 99.9% uptime',
+      'Implemented CI/CD pipelines reducing deployment time by 80%',
+      'Collaborated with design team to improve user experience metrics by 35%',
+    ],
+    technologies: ['React', 'Node.js', 'MongoDB', 'AWS', 'Docker'],
+  },
+  {
+    id: 'frontend-dev',
+    title: 'Frontend Developer',
+    company: 'Startup Inc.',
+    location: 'Bangkok, Thailand',
+    startDate: '2019-06',
+    endDate: '2020-02',
+    description:
+      'Focused on creating modern, responsive user interfaces using React and modern JavaScript.',
+    achievements: [
+      'Developed component library used across 5 different projects',
+      'Improved website performance scores from 65 to 95 on Lighthouse',
+      'Established frontend testing practices with 90% code coverage',
+    ],
+    technologies: ['React', 'JavaScript', 'Sass', 'Jest', 'Webpack'],
+  },
 ];
 
 // Contact information
