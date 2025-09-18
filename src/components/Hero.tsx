@@ -1,94 +1,164 @@
-import { personalInfo } from '../data';
+import { cn } from '@/utils';
+import type { BaseComponentProps } from '@/types';
 
-export default function Hero() {
-  const { name, title, location, bio, avatar, email } = personalInfo;
+interface HeroProps extends BaseComponentProps {
+  headline?: string;
+  subheadline?: string;
+  description?: string;
+  primaryCTA?: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA?: {
+    text: string;
+    href: string;
+  };
+}
 
+export function Hero({
+  headline = 'Full Stack Developer',
+  subheadline = 'Building Modern Web Applications',
+  description = "I create beautiful, performant, and accessible web applications using cutting-edge technologies. Let's build something amazing together.",
+  primaryCTA = { text: 'View My Work', href: '#projects' },
+  secondaryCTA = { text: 'Get In Touch', href: '#contact' },
+  className,
+}: HeroProps) {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-cozy-cream-50 via-cozy-cream-100 to-cozy-brown-100 dark:from-cozy-brown-900 dark:via-cozy-brown-800 dark:to-cozy-brown-700">
+    <section
+      id="home"
+      className={cn(
+        'relative flex min-h-screen items-center justify-center',
+        'to-primary-50 bg-gradient-to-br from-neutral-50',
+        'overflow-hidden',
+        className
+      )}
+    >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
-        <svg className="w-full h-full" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="cozy-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <circle cx="30" cy="30" r="2" fill="currentColor" className="text-cozy-brown-400"/>
-              <circle cx="10" cy="10" r="1" fill="currentColor" className="text-cozy-orange-300"/>
-              <circle cx="50" cy="10" r="1" fill="currentColor" className="text-cozy-orange-300"/>
-              <circle cx="10" cy="50" r="1" fill="currentColor" className="text-cozy-orange-300"/>
-              <circle cx="50" cy="50" r="1" fill="currentColor" className="text-cozy-orange-300"/>
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#cozy-pattern)"/>
-        </svg>
+        <div className="bg-primary-500 animate-blob absolute top-0 left-0 h-72 w-72 rounded-full mix-blend-multiply blur-xl filter"></div>
+        <div className="animate-blob animation-delay-2000 absolute top-0 right-0 h-72 w-72 rounded-full bg-yellow-300 mix-blend-multiply blur-xl filter"></div>
+        <div className="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-300 mix-blend-multiply blur-xl filter"></div>
       </div>
 
-      <div className="relative container mx-auto px-4 py-20">
-        <div className="max-w-4xl mx-auto text-center">
+      <div className="relative z-10 container mx-auto px-4 py-20">
+        <div className="mx-auto max-w-4xl text-center">
           {/* Profile Image */}
-          <div className="relative inline-block mb-8">
-            <img
-              src={avatar}
-              alt={name}
-              className="w-36 h-36 md:w-48 md:h-48 rounded-full object-cover shadow-2xl ring-4 ring-cozy-cream-200 dark:ring-cozy-brown-600"
-            />
-            <div className="absolute -bottom-2 -right-2 w-12 h-12 bg-cozy-orange-400 rounded-full flex items-center justify-center shadow-lg">
-              <span className="text-white text-xl">👋</span>
+          <div className="mb-8">
+            <div className="from-primary-400 to-primary-600 mx-auto h-32 w-32 rounded-full bg-gradient-to-r p-1">
+              <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
+                <span className="text-primary-600 text-4xl font-bold">AM</span>
+              </div>
             </div>
           </div>
 
-          {/* Name and Title */}
-          <h1 className="text-4xl md:text-6xl font-bold font-serif text-cozy-brown-900 dark:text-cozy-cream-50 mb-4">
-            {name}
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-cozy-brown-700 dark:text-cozy-cream-200 mb-2 font-medium">
-            {title}
-          </p>
-          
-          <div className="flex items-center justify-center text-cozy-brown-600 dark:text-cozy-cream-300 mb-8">
-            <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
-            </svg>
-            {location}
-          </div>
+          {/* Content */}
+          <div className="space-y-6">
+            <h1 className="text-5xl leading-tight font-bold text-neutral-900 md:text-7xl">
+              <span className="block text-balance">{headline}</span>
+            </h1>
 
-          {/* Bio */}
-          <div className="max-w-2xl mx-auto mb-8">
-            <p className="text-lg leading-relaxed text-cozy-brown-700 dark:text-cozy-cream-200">
-              {bio}
+            <h2 className="text-primary-600 text-xl font-medium md:text-2xl">{subheadline}</h2>
+
+            <p className="mx-auto max-w-2xl text-lg leading-relaxed text-pretty text-neutral-600 md:text-xl">
+              {description}
             </p>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col items-center justify-center gap-4 pt-8 sm:flex-row">
+              <a
+                href={primaryCTA.href}
+                className={cn(
+                  'inline-flex items-center justify-center',
+                  'px-8 py-4 text-lg font-semibold',
+                  'bg-primary-600 rounded-lg text-white',
+                  'hover:bg-primary-700 focus:bg-primary-700',
+                  'transition-all duration-200',
+                  'transform hover:scale-105 focus:scale-105',
+                  'shadow-lg hover:shadow-xl'
+                )}
+              >
+                {primaryCTA.text}
+                <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 7l5 5m0 0l-5 5m5-5H6"
+                  />
+                </svg>
+              </a>
+
+              {secondaryCTA && (
+                <a
+                  href={secondaryCTA.href}
+                  className={cn(
+                    'inline-flex items-center justify-center',
+                    'px-8 py-4 text-lg font-semibold',
+                    'border-primary-600 text-primary-600 rounded-lg border-2',
+                    'hover:bg-primary-600 hover:text-white',
+                    'focus:bg-primary-600 focus:text-white',
+                    'transition-all duration-200',
+                    'transform hover:scale-105 focus:scale-105'
+                  )}
+                >
+                  {secondaryCTA.text}
+                </a>
+              )}
+            </div>
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a
-              href="#projects"
-              className="focus-cozy inline-flex items-center px-8 py-3 bg-cozy-orange-500 hover:bg-cozy-orange-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
-            >
-              View My Work
-              <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          {/* Scroll Indicator */}
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform">
+            <div className="animate-bounce">
+              <svg
+                className="h-6 w-6 text-neutral-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
               </svg>
-            </a>
-            
-            <a
-              href={`mailto:${email}`}
-              className="focus-cozy inline-flex items-center px-8 py-3 bg-transparent border-2 border-cozy-brown-300 hover:border-cozy-brown-400 dark:border-cozy-cream-300 dark:hover:border-cozy-cream-200 text-cozy-brown-700 dark:text-cozy-cream-200 font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-              Get in Touch
-            </a>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <svg className="w-6 h-6 text-cozy-brown-400 dark:text-cozy-cream-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
       </div>
     </section>
   );
 }
+
+// Add custom CSS for blob animation
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+`;
+document.head.appendChild(style);

@@ -1,72 +1,72 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:wght@300;400;700&display=swap');
+@import 'tailwindcss';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
+/* Design Tokens */
 @theme {
-  --color-cozy-brown-50: #fdf8f6;
-  --color-cozy-brown-100: #f2e8e2;
-  --color-cozy-brown-200: #eaddd5;
-  --color-cozy-brown-300: #d1bab0;
-  --color-cozy-brown-400: #b39488;
-  --color-cozy-brown-500: #9d7968;
-  --color-cozy-brown-600: #8b6f61;
-  --color-cozy-brown-700: #735c52;
-  --color-cozy-brown-800: #5f4e47;
-  --color-cozy-brown-900: #4f423c;
+  /* Color Palette */
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #e0f0ff;
+  --color-primary-200: #b8e0ff;
+  --color-primary-300: #78c5ff;
+  --color-primary-400: #2ba6ff;
+  --color-primary-500: #0186ff;
+  --color-primary-600: #006fe6;
+  --color-primary-700: #0056b8;
+  --color-primary-800: #004a9a;
+  --color-primary-900: #003d7f;
+  --color-primary-950: #002554;
 
-  --color-cozy-cream-50: #fefdf9;
-  --color-cozy-cream-100: #fbf7ec;
-  --color-cozy-cream-200: #f7f0d9;
-  --color-cozy-cream-300: #f0e4bd;
-  --color-cozy-cream-400: #e7d29d;
-  --color-cozy-cream-500: #dabf82;
-  --color-cozy-cream-600: #c5a66b;
-  --color-cozy-cream-700: #a5895a;
-  --color-cozy-cream-800: #866f4d;
-  --color-cozy-cream-900: #6d5b42;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
 
-  --color-cozy-orange-50: #fff7ed;
-  --color-cozy-orange-100: #ffedd5;
-  --color-cozy-orange-200: #fed7aa;
-  --color-cozy-orange-300: #fdba74;
-  --color-cozy-orange-400: #fb923c;
-  --color-cozy-orange-500: #f97316;
-  --color-cozy-orange-600: #ea580c;
-  --color-cozy-orange-700: #c2410c;
-  --color-cozy-orange-800: #9a3412;
-  --color-cozy-orange-900: #7c2d12;
-
-  --font-family-sans: Inter, system-ui, sans-serif;
-  --font-family-serif: Merriweather, Georgia, serif;
+  /* Typography */
+  --font-family-sans:
+    'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, 'Courier New', monospace;
 }
 
-:root {
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+body {
+  font-family: var(--font-family-sans);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-cozy-cream-50 dark:bg-cozy-brown-900;
+/* Custom Utility Classes */
+.text-balance {
+  text-wrap: balance;
 }
 
-::-webkit-scrollbar-thumb {
-  @apply bg-cozy-brown-400 dark:bg-cozy-brown-600 rounded-full;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-cozy-brown-500 dark:bg-cozy-brown-500;
+.text-pretty {
+  text-wrap: pretty;
 }
 
 /* Focus styles for accessibility */
-.focus-cozy {
-  @apply focus:outline-none focus:ring-2 focus:ring-cozy-orange-400 focus:ring-offset-2 focus:ring-offset-cozy-cream-50 dark:focus:ring-offset-cozy-brown-900;
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
 }

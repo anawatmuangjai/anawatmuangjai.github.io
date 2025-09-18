@@ -1,28 +1,35 @@
-import { ThemeProvider } from './context/ThemeContext';
-import Layout from './components/Layout';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Projects from './components/Projects';
-import Skills from './components/Skills';
-import ExperienceTimeline from './components/ExperienceTimeline';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { Layout } from '@/components/Layout';
+import { Hero } from '@/components/Hero';
+import { About } from '@/components/About';
 
 function App() {
   return (
-    <ThemeProvider>
-      <Layout>
-        <Header />
-        <main>
-          <Hero />
-          <Projects />
-          <Skills />
-          <ExperienceTimeline />
-          <Contact />
-        </main>
-        <Footer />
-      </Layout>
-    </ThemeProvider>
+    <Layout>
+      <Hero />
+      <About />
+
+      {/* Placeholder sections for future implementation */}
+      <section id="skills" className="bg-neutral-50 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="mb-8 text-4xl font-bold text-neutral-900">Skills & Technologies</h2>
+          <p className="text-neutral-600">Coming soon...</p>
+        </div>
+      </section>
+
+      <section id="projects" className="bg-white py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="mb-8 text-4xl font-bold text-neutral-900">Featured Projects</h2>
+          <p className="text-neutral-600">Coming soon...</p>
+        </div>
+      </section>
+
+      <section id="contact" className="bg-neutral-50 py-20">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="mb-8 text-4xl font-bold text-neutral-900">Get In Touch</h2>
+          <p className="text-neutral-600">Coming soon...</p>
+        </div>
+      </section>
+    </Layout>
   );
 }
 
