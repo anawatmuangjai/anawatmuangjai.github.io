@@ -4,6 +4,7 @@ import { About } from '@/components/About';
 import { Skills } from '@/components/Skills';
 import { FeaturedProjects } from '@/components/FeaturedProjects';
 import { CodeSamples } from '@/components/CodeSamples';
+import { Contact } from '@/components/Contact';
 
 function App() {
   return (
@@ -13,13 +14,7 @@ function App() {
       <Skills />
       <FeaturedProjects />
       <CodeSamples />
-
-      <section id="contact" className="bg-neutral-50 py-20">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-8 text-4xl font-bold text-neutral-900">Get In Touch</h2>
-          <p className="text-neutral-600">Coming soon...</p>
-        </div>
-      </section>
+      <Contact />
     </Layout>
   );
 }

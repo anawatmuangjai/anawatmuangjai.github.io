@@ -1,47 +1,45 @@
 import { cn } from '@/utils';
 import type { BaseComponentProps } from '@/types';
+import { skills } from '@/data';
 
 interface SkillsProps extends BaseComponentProps {
   title?: string;
 }
 
 export function Skills({ title = 'Skills & Technologies', className }: SkillsProps) {
+  // Group skills by category and select top 3 for each
   const skillCategories = [
     {
       name: 'Frontend',
-      skills: [
-        { name: 'React', level: 95, color: 'bg-blue-500' },
-        { name: 'TypeScript', level: 90, color: 'bg-blue-600' },
-        { name: 'Tailwind CSS', level: 85, color: 'bg-cyan-500' },
-        { name: 'Next.js', level: 80, color: 'bg-gray-800' },
-      ],
+      icon: '⚛️',
+      skills: skills
+        .filter(skill => skill.category === 'frontend')
+        .slice(0, 3)
+        .map(skill => ({ name: skill.name, icon: skill.icon })),
     },
     {
       name: 'Backend',
-      skills: [
-        { name: 'Node.js', level: 85, color: 'bg-green-500' },
-        { name: 'C# / .NET', level: 90, color: 'bg-purple-600' },
-        { name: 'Express.js', level: 80, color: 'bg-gray-600' },
-        { name: 'GraphQL', level: 70, color: 'bg-pink-500' },
-      ],
+      icon: '⚙️',
+      skills: skills
+        .filter(skill => skill.category === 'backend')
+        .slice(0, 3)
+        .map(skill => ({ name: skill.name, icon: skill.icon })),
     },
     {
-      name: 'Database & Cloud',
-      skills: [
-        { name: 'MongoDB', level: 85, color: 'bg-green-600' },
-        { name: 'SQL Server', level: 90, color: 'bg-red-600' },
-        { name: 'AWS', level: 75, color: 'bg-orange-500' },
-        { name: 'Docker', level: 80, color: 'bg-blue-400' },
-      ],
+      name: 'Database',
+      icon: '🗄️',
+      skills: skills
+        .filter(skill => skill.category === 'database')
+        .slice(0, 3)
+        .map(skill => ({ name: skill.name, icon: skill.icon })),
     },
     {
-      name: 'Tools & DevOps',
-      skills: [
-        { name: 'Git', level: 95, color: 'bg-orange-600' },
-        { name: 'VS Code', level: 98, color: 'bg-blue-500' },
-        { name: 'GitHub Actions', level: 85, color: 'bg-gray-700' },
-        { name: 'Vite', level: 90, color: 'bg-purple-500' },
-      ],
+      name: 'Tools',
+      icon: '🛠️',
+      skills: skills
+        .filter(skill => skill.category === 'tools')
+        .slice(0, 3)
+        .map(skill => ({ name: skill.name, icon: skill.icon })),
     },
   ];
 
@@ -53,34 +51,36 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-600 mx-auto h-1 w-24"></div>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-600">
-              Here are the technologies and tools I use to bring ideas to life
+              Here are the core technologies and tools I use to bring ideas to life
             </p>
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {skillCategories.map((category, categoryIndex) => (
               <div key={category.name} className="space-y-6">
-                <h3 className="text-center text-xl font-bold text-neutral-800">{category.name}</h3>
+                <div className="text-center">
+                  <div className="mb-3 text-3xl">{category.icon}</div>
+                  <h3 className="text-xl font-bold text-neutral-800">{category.name}</h3>
+                </div>
 
-                <div className="space-y-4">
+                <div className="flex flex-col gap-3">
                   {category.skills.map((skill, skillIndex) => (
-                    <div key={skill.name} className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="font-medium text-neutral-700">{skill.name}</span>
-                        <span className="text-sm text-neutral-500">{skill.level}%</span>
-                      </div>
-
-                      <div className="h-2 w-full rounded-full bg-neutral-200">
-                        <div
-                          className={cn(
-                            'h-2 rounded-full transition-all duration-1000 ease-out',
-                            skill.color
-                          )}
-                          style={{
-                            width: `${skill.level}%`,
-                            animationDelay: `${(categoryIndex * 4 + skillIndex) * 100}ms`,
-                          }}
-                        ></div>
+                    <div
+                      key={skill.name}
+                      className={cn(
+                        'group flex items-center justify-center rounded-lg bg-white px-4 py-3 shadow-sm',
+                        'border border-neutral-200 transition-all duration-200',
+                        'hover:border-primary-300 hover:-translate-y-1 hover:shadow-md'
+                      )}
+                      style={{
+                        animationDelay: `${(categoryIndex * 3 + skillIndex) * 100}ms`,
+                      }}
+                    >
+                      <div className="flex items-center space-x-3">
+                        <SkillIcon name={skill.icon || ''} />
+                        <span className="font-medium text-neutral-700 group-hover:text-neutral-900">
+                          {skill.name}
+                        </span>
                       </div>
                     </div>
                   ))}
@@ -185,4 +185,27 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
       </div>
     </section>
   );
+}
+
+// Skill Icon Component
+function SkillIcon({ name }: { name?: string }) {
+  const iconMap: Record<string, string> = {
+    react: '⚛️',
+    typescript: '🔷',
+    javascript: '🟨',
+    html: '🔶',
+    css: '🎨',
+    tailwind: '💨',
+    csharp: '🔵',
+    dotnet: '🔷',
+    nodejs: '🟢',
+    express: '⚡',
+    sqlserver: '🗄️',
+    mongodb: '🍃',
+    git: '📊',
+    docker: '🐳',
+    vscode: '💙',
+  };
+
+  return <span className="text-lg">{iconMap[name || ''] || '⚙️'}</span>;
 }
