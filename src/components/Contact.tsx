@@ -86,12 +86,12 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
   };
 
   return (
-    <section id="contact" className={cn('bg-white py-20', className)}>
+    <section id="contact" className={cn('bg-neutral-50 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-            <div className="bg-primary-600 mx-auto h-1 w-24 rounded-full"></div>
+            <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
               Ready to start your next project? Let's discuss how we can work together.
             </p>
@@ -232,9 +232,8 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                     type="submit"
                     disabled={isSubmitting}
                     className={cn(
-                      'w-full rounded-2xl px-6 py-3 font-semibold text-white transition-all duration-300',
-                      'bg-primary-600 hover:bg-primary-700 hover:-translate-y-1 hover:shadow-lg',
-                      'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0'
+                      'neuro-button neuro-button-primary w-full px-6 py-3 font-semibold transition-all duration-200',
+                      'disabled:cursor-not-allowed disabled:opacity-50'
                     )}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -246,7 +245,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
             {/* Email Card */}
             <BentoCard className="col-span-1">
               <div className="space-y-3">
-                <div className="bg-primary-600 flex h-12 w-12 items-center justify-center rounded-2xl">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-300 to-primary-500">
                   <MailIcon className="h-6 w-6 text-white" />
                 </div>
                 <div>

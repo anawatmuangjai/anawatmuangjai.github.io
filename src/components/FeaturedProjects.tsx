@@ -12,12 +12,12 @@ export function FeaturedProjects({
   className,
 }: FeaturedProjectsProps) {
   return (
-    <section id="projects" className={cn('bg-neutral-50 py-20', className)}>
+    <section id="projects" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-            <div className="bg-primary-600 mx-auto h-1 w-24 rounded-full"></div>
+            <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
               Discover my latest work and contributions to the developer community
             </p>
@@ -99,8 +99,8 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                'glass flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-neutral-700',
-                'transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-100'
+                'neuro-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700',
+                'transition-all duration-200'
               )}
             >
               <GithubIcon className="h-4 w-4" />
@@ -114,8 +114,8 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                'bg-primary-600 flex items-center gap-2 rounded-xl px-4 py-2 text-sm font-medium text-white',
-                'hover:bg-primary-700 transition-all duration-300 hover:-translate-y-1'
+                'neuro-button neuro-button-primary flex items-center gap-2 px-4 py-2 text-sm font-medium',
+                'transition-all duration-200'
               )}
             >
               <ExternalLinkIcon className="h-4 w-4" />

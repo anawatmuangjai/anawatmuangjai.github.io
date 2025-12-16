@@ -29,16 +29,16 @@ export function Hero({
       id="home"
       className={cn(
         'relative min-h-screen py-20',
-        'to-primary-50 bg-gradient-to-br from-neutral-50 via-blue-50',
+        'bg-neutral-50',
         'overflow-hidden',
         className
       )}
     >
       {/* Background Gradient Orbs */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="bg-primary-400 animate-blob absolute top-20 left-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-40 right-20 h-96 w-96 rounded-full bg-purple-400 mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-96 w-96 rounded-full bg-pink-400 mix-blend-multiply blur-3xl filter"></div>
+      <div className="absolute inset-0 opacity-20">
+        <div className="bg-primary-300 animate-blob absolute top-20 left-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-2000 absolute top-40 right-20 h-96 w-96 rounded-full bg-primary-200 mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-96 w-96 rounded-full bg-primary-100 mix-blend-multiply blur-3xl filter"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
@@ -73,12 +73,10 @@ export function Hero({
                 <a
                   href={primaryCTA.href}
                   className={cn(
+                    'neuro-button neuro-button-primary',
                     'inline-flex items-center justify-center',
-                    'px-6 py-3 text-base font-semibold',
-                    'bg-primary-600 rounded-2xl text-white',
-                    'hover:bg-primary-700',
-                    'transition-all duration-300',
-                    'shadow-lg hover:-translate-y-1 hover:shadow-xl'
+                    'px-8 py-4 text-base font-semibold',
+                    'transition-all duration-200'
                   )}
                 >
                   {primaryCTA.text}
@@ -101,12 +99,11 @@ export function Hero({
                   <a
                     href={secondaryCTA.href}
                     className={cn(
+                      'neuro-button',
                       'inline-flex items-center justify-center',
-                      'px-6 py-3 text-base font-semibold',
-                      'glass rounded-2xl text-neutral-700',
-                      'hover:bg-neutral-100',
-                      'transition-all duration-300',
-                      'hover:-translate-y-1'
+                      'px-8 py-4 text-base font-semibold',
+                      'text-neutral-700',
+                      'transition-all duration-200'
                     )}
                   >
                     {secondaryCTA.text}

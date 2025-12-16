@@ -14,12 +14,12 @@ export function About({
   className,
 }: AboutProps) {
   return (
-    <section id="about" className={cn('bg-neutral-50 py-20', className)}>
+    <section id="about" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-            <div className="bg-primary-600 mx-auto h-1 w-24 rounded-full"></div>
+            <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
           </div>
 
           <BentoGrid cols={3} gap="md">
@@ -60,10 +60,10 @@ export function About({
                   <a
                     href="#contact"
                     className={cn(
+                      'neuro-button neuro-button-primary',
                       'inline-flex items-center',
-                      'bg-primary-600 rounded-2xl px-6 py-3 font-semibold text-white',
-                      'hover:bg-primary-700 hover:-translate-y-1 hover:shadow-lg',
-                      'transition-all duration-300'
+                      'px-6 py-3 font-semibold',
+                      'transition-all duration-200'
                     )}
                   >
                     Let's Work Together
@@ -88,7 +88,7 @@ export function About({
             {/* Profile Image Card */}
             <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1" padding="none">
               <div className="relative h-full min-h-[240px] overflow-hidden">
-                <div className="from-primary-400 absolute inset-0 bg-gradient-to-br to-purple-500"></div>
+                <div className="from-primary-300 absolute inset-0 bg-gradient-to-br to-primary-500"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm">
