@@ -1,5 +1,6 @@
 import { cn } from '@/utils';
 import type { BaseComponentProps } from '@/types';
+import { BentoGrid, BentoCard } from './BentoGrid';
 
 interface HeroProps extends BaseComponentProps {
   headline?: string;
@@ -27,77 +28,57 @@ export function Hero({
     <section
       id="home"
       className={cn(
-        'relative flex min-h-screen items-center justify-center',
-        'to-primary-50 bg-gradient-to-br from-neutral-50',
+        'relative min-h-screen py-20',
+        'to-primary-50 bg-gradient-to-br from-neutral-50 via-blue-50',
         'overflow-hidden',
         className
       )}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="bg-primary-500 animate-blob absolute top-0 left-0 h-72 w-72 rounded-full mix-blend-multiply blur-xl filter"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-0 right-0 h-72 w-72 rounded-full bg-yellow-300 mix-blend-multiply blur-xl filter"></div>
-        <div className="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-300 mix-blend-multiply blur-xl filter"></div>
+      {/* Background Gradient Orbs */}
+      <div className="absolute inset-0 opacity-30">
+        <div className="bg-primary-400 animate-blob absolute top-20 left-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-2000 absolute top-40 right-20 h-96 w-96 rounded-full bg-purple-400 mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-96 w-96 rounded-full bg-pink-400 mix-blend-multiply blur-3xl filter"></div>
       </div>
 
-      {/* Floating Code Elements */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="text-primary-300 animate-float absolute top-20 left-10 font-mono text-sm opacity-30">
-          {'{ }'}
-        </div>
-        <div className="text-primary-400 animate-float-delayed absolute top-40 right-20 font-mono text-lg opacity-40">
-          &lt;/&gt;
-        </div>
-        <div className="text-primary-300 animate-float absolute bottom-40 left-20 font-mono text-sm opacity-30">
-          npm install
-        </div>
-        <div className="text-primary-200 animate-float-delayed absolute top-60 left-1/3 font-mono text-xs opacity-20">
-          git commit -m "✨ magic"
-        </div>
-        <div className="text-primary-400 animate-float absolute right-10 bottom-60 font-mono text-sm opacity-30">
-          const magic = true;
-        </div>
-        <div className="text-primary-300 animate-float-delayed absolute top-32 left-2/3 font-mono text-xs opacity-25">
-          yarn dev
-        </div>
-      </div>
+      <div className="relative z-10 container mx-auto px-4">
+        <BentoGrid cols={6} gap="md">
+          {/* Main Profile Card - Spans 4 columns on desktop */}
+          <BentoCard
+            className="col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-2"
+            glassVariant="strong"
+          >
+            <div className="flex h-full flex-col justify-between">
+              <div className="space-y-6">
+                <div className="glass inline-flex items-center rounded-full px-4 py-2">
+                  <div className="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
+                  <span className="text-sm font-medium text-neutral-700">Available for work</span>
+                </div>
 
-      <div className="relative z-10 container mx-auto px-4 py-20">
-        <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Left Content */}
-          <div className="text-center lg:text-left">
-            {/* Profile Image */}
-            <div className="mb-8 lg:hidden">
-              <div className="from-primary-400 to-primary-600 mx-auto h-32 w-32 rounded-full bg-gradient-to-r p-1">
-                <div className="flex h-full w-full items-center justify-center rounded-full bg-white">
-                  <span className="text-primary-600 text-4xl font-bold">AM</span>
+                <div>
+                  <h1 className="mb-3 text-5xl leading-tight font-bold text-neutral-900 md:text-6xl lg:text-7xl">
+                    <span className="block text-balance">{headline}</span>
+                  </h1>
+                  <h2 className="text-primary-600 mb-6 text-2xl font-semibold lg:text-3xl">
+                    {subheadline}
+                  </h2>
+                  <p className="text-lg leading-relaxed text-pretty text-neutral-600 lg:text-xl">
+                    {description}
+                  </p>
                 </div>
               </div>
-            </div>
-
-            <div className="space-y-6">
-              <h1 className="text-5xl leading-tight font-bold text-neutral-900 lg:text-6xl xl:text-7xl">
-                <span className="block text-balance">{headline}</span>
-              </h1>
-
-              <h2 className="text-primary-600 text-xl font-medium lg:text-2xl">{subheadline}</h2>
-
-              <p className="text-lg leading-relaxed text-pretty text-neutral-600 lg:text-xl">
-                {description}
-              </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col items-center justify-center gap-4 pt-8 sm:flex-row lg:items-start lg:justify-start">
+              <div className="flex flex-wrap gap-4 pt-8">
                 <a
                   href={primaryCTA.href}
                   className={cn(
                     'inline-flex items-center justify-center',
-                    'px-8 py-4 text-lg font-semibold',
-                    'bg-primary-600 rounded-lg text-white',
-                    'hover:bg-primary-700 focus:bg-primary-700',
-                    'transition-all duration-200',
-                    'transform hover:scale-105 focus:scale-105',
-                    'shadow-lg hover:shadow-xl'
+                    'px-6 py-3 text-base font-semibold',
+                    'bg-primary-600 rounded-2xl text-white',
+                    'hover:bg-primary-700',
+                    'transition-all duration-300',
+                    'shadow-lg hover:-translate-y-1 hover:shadow-xl'
                   )}
                 >
                   {primaryCTA.text}
@@ -121,12 +102,11 @@ export function Hero({
                     href={secondaryCTA.href}
                     className={cn(
                       'inline-flex items-center justify-center',
-                      'px-8 py-4 text-lg font-semibold',
-                      'border-primary-600 text-primary-600 rounded-lg border-2',
-                      'hover:bg-primary-600 hover:text-white',
-                      'focus:bg-primary-600 focus:text-white',
-                      'transition-all duration-200',
-                      'transform hover:scale-105 focus:scale-105'
+                      'px-6 py-3 text-base font-semibold',
+                      'glass rounded-2xl text-neutral-700',
+                      'hover:bg-neutral-100',
+                      'transition-all duration-300',
+                      'hover:-translate-y-1'
                     )}
                   >
                     {secondaryCTA.text}
@@ -134,16 +114,78 @@ export function Hero({
                 )}
               </div>
             </div>
-          </div>
+          </BentoCard>
 
-          {/* Right Visual - macOS Terminal */}
-          <div className="hidden justify-center lg:flex">
-            <MacTerminal />
-          </div>
-        </div>
+          {/* Profile Image Card */}
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-2" padding="none">
+            <div className="relative h-full min-h-[280px] overflow-hidden">
+              <div className="from-primary-500 absolute inset-0 bg-gradient-to-br to-purple-600 opacity-90"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-white/20 backdrop-blur-sm">
+                    <span className="text-5xl font-bold text-white">AM</span>
+                  </div>
+                  <p className="text-lg font-semibold text-white">Anawat Muangjai</p>
+                  <p className="text-sm text-white/80">Bangkok, Thailand</p>
+                </div>
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* Quick Stats Cards */}
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1">
+            <div className="text-center">
+              <div className="text-primary-600 mb-2 text-4xl font-bold">5+</div>
+              <div className="text-sm font-medium text-neutral-600">Years Experience</div>
+            </div>
+          </BentoCard>
+
+          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1">
+            <div className="text-center">
+              <div className="text-primary-600 mb-2 text-4xl font-bold">20+</div>
+              <div className="text-sm font-medium text-neutral-600">Projects</div>
+            </div>
+          </BentoCard>
+
+          {/* Mini Terminal Card */}
+          <BentoCard
+            className="col-span-1 md:col-span-2 lg:col-span-3"
+            glassVariant="dark"
+            padding="md"
+          >
+            <div className="space-y-2 font-mono text-sm">
+              <div className="flex items-center text-green-400">
+                <span className="mr-2">❯</span>
+                <span className="text-white">npm run dev</span>
+              </div>
+              <div className="text-neutral-300">🚀 Server running at localhost:3000</div>
+              <div className="flex items-center text-green-400">
+                <span className="mr-2">❯</span>
+                <span className="animate-pulse text-white">|</span>
+              </div>
+            </div>
+          </BentoCard>
+
+          {/* Tech Stack Card */}
+          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-3">
+            <div className="space-y-3">
+              <h3 className="text-lg font-bold text-neutral-900">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {['React', 'TypeScript', '.NET', 'Tailwind'].map(tech => (
+                  <span
+                    key={tech}
+                    className="glass rounded-xl px-3 py-1.5 text-sm font-medium text-neutral-700"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </BentoCard>
+        </BentoGrid>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 transform">
+        <div className="mt-20 flex justify-center">
           <div className="animate-bounce">
             <svg
               className="h-6 w-6 text-neutral-400"
@@ -165,83 +207,11 @@ export function Hero({
   );
 }
 
-// macOS Terminal Component
-function MacTerminal() {
-  return (
-    <div className="w-full max-w-2xl">
-      {/* Terminal Window */}
-      <div className="rotate-2 transform overflow-hidden rounded-lg bg-neutral-900 shadow-2xl transition-transform duration-300 hover:rotate-0">
-        {/* Terminal Header */}
-        <div className="flex items-center justify-between bg-neutral-800 px-4 py-3">
-          <div className="flex items-center space-x-2">
-            <div className="h-3 w-3 rounded-full bg-red-500"></div>
-            <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-            <div className="h-3 w-3 rounded-full bg-green-500"></div>
-          </div>
-          <div className="font-mono text-sm text-neutral-400">Terminal — zsh — 80×24</div>
-          <div></div>
-        </div>
-
-        {/* Terminal Content */}
-        <div className="space-y-3 p-6 font-mono text-sm">
-          <div className="flex items-center">
-            <span className="text-green-400">anawat@MacBook-Pro</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~/projects</span>
-            <span className="text-white">$</span>
-            <span className="ml-2 text-white">
-              git clone https://github.com/anawatmuangjai/awesome-project.git
-            </span>
-          </div>
-
-          <div className="text-neutral-400">Cloning into 'awesome-project'...</div>
-
-          <div className="flex items-center">
-            <span className="text-green-400">anawat@MacBook-Pro</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~/projects</span>
-            <span className="text-white">$</span>
-            <span className="ml-2 text-white">cd awesome-project</span>
-          </div>
-
-          <div className="flex items-center">
-            <span className="text-green-400">anawat@MacBook-Pro</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~/projects/awesome-project</span>
-            <span className="text-white">$</span>
-            <span className="ml-2 text-white">npm install</span>
-          </div>
-
-          <div className="text-neutral-400">✓ Installing dependencies...</div>
-
-          <div className="flex items-center">
-            <span className="text-green-400">anawat@MacBook-Pro</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~/projects/awesome-project</span>
-            <span className="text-white">$</span>
-            <span className="ml-2 text-white">npm run dev</span>
-          </div>
-
-          <div className="text-green-400">🚀 Server running at http://localhost:3000</div>
-
-          <div className="flex items-center">
-            <span className="text-green-400">anawat@MacBook-Pro</span>
-            <span className="text-white">:</span>
-            <span className="text-blue-400">~/projects/awesome-project</span>
-            <span className="text-white">$</span>
-            <span className="ml-2 animate-pulse text-white">|</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Add custom CSS for blob animation
+// Add custom CSS for animations
 const style = document.createElement('style');
 style.textContent = `
   @keyframes blob {
-    0% {
+    0%, 100% {
       transform: translate(0px, 0px) scale(1);
     }
     33% {
@@ -250,40 +220,10 @@ style.textContent = `
     66% {
       transform: translate(-20px, 20px) scale(0.9);
     }
-    100% {
-      transform: translate(0px, 0px) scale(1);
-    }
-  }
-  
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-20px) rotate(5deg);
-    }
-  }
-  
-  @keyframes float-delayed {
-    0%, 100% {
-      transform: translateY(0px) rotate(0deg);
-    }
-    50% {
-      transform: translateY(-15px) rotate(-3deg);
-    }
   }
   
   .animate-blob {
     animation: blob 7s infinite;
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-  
-  .animate-float-delayed {
-    animation: float-delayed 8s ease-in-out infinite;
-    animation-delay: -2s;
   }
   
   .animation-delay-2000 {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { cn } from '@/utils';
 import type { BaseComponentProps, ContactFormData, FormErrors } from '@/types';
 import { contactInfo } from '@/data';
+import { BentoGrid, BentoCard } from './BentoGrid';
 
 interface ContactProps extends BaseComponentProps {
   title?: string;
@@ -87,19 +88,19 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
   return (
     <section id="contact" className={cn('bg-white py-20', className)}>
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-            <div className="bg-primary-600 mx-auto h-1 w-24"></div>
+            <div className="bg-primary-600 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
               Ready to start your next project? Let's discuss how we can work together.
             </p>
           </div>
 
-          <div className="grid items-start gap-12 lg:grid-cols-2">
-            {/* Contact Form */}
-            <div className="order-2 lg:order-1">
-              <div className="rounded-xl bg-neutral-50 p-8 shadow-lg">
+          <BentoGrid cols={3} gap="md">
+            {/* Contact Form - Spans 2 columns */}
+            <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2">
+              <div>
                 <h3 className="mb-6 text-2xl font-bold text-neutral-900">Send Message</h3>
 
                 {submitStatus === 'success' && (
@@ -136,11 +137,9 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                         value={formData.name}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full rounded-lg border px-4 py-3 text-neutral-900 transition-colors',
-                          'focus:border-primary-500 focus:ring-primary-500/20 focus:ring-2 focus:outline-none',
-                          errors['name']
-                            ? 'border-red-300 bg-red-50'
-                            : 'border-neutral-300 bg-white'
+                          'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
+                          'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                          errors['name'] && 'ring-2 ring-red-300'
                         )}
                         placeholder="Your name"
                       />
@@ -164,11 +163,9 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={cn(
-                          'w-full rounded-lg border px-4 py-3 text-neutral-900 transition-colors',
-                          'focus:border-primary-500 focus:ring-primary-500/20 focus:ring-2 focus:outline-none',
-                          errors['email']
-                            ? 'border-red-300 bg-red-50'
-                            : 'border-neutral-300 bg-white'
+                          'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
+                          'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                          errors['email'] && 'ring-2 ring-red-300'
                         )}
                         placeholder="your.email@example.com"
                       />
@@ -193,11 +190,9 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                       value={formData.subject}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full rounded-lg border px-4 py-3 text-neutral-900 transition-colors',
-                        'focus:border-primary-500 focus:ring-primary-500/20 focus:ring-2 focus:outline-none',
-                        errors['subject']
-                          ? 'border-red-300 bg-red-50'
-                          : 'border-neutral-300 bg-white'
+                        'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
+                        'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                        errors['subject'] && 'ring-2 ring-red-300'
                       )}
                       placeholder="Project inquiry, collaboration, etc."
                     />
@@ -221,11 +216,9 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                       value={formData.message}
                       onChange={handleInputChange}
                       className={cn(
-                        'w-full resize-none rounded-lg border px-4 py-3 text-neutral-900 transition-colors',
-                        'focus:border-primary-500 focus:ring-primary-500/20 focus:ring-2 focus:outline-none',
-                        errors['message']
-                          ? 'border-red-300 bg-red-50'
-                          : 'border-neutral-300 bg-white'
+                        'glass w-full resize-none rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
+                        'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                        errors['message'] && 'ring-2 ring-red-300'
                       )}
                       placeholder="Tell me about your project or how we can work together..."
                     />
@@ -239,65 +232,64 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                     type="submit"
                     disabled={isSubmitting}
                     className={cn(
-                      'w-full rounded-lg px-6 py-3 font-semibold text-white transition-all duration-200',
-                      'bg-primary-600 hover:bg-primary-700 focus:ring-primary-500/20 focus:ring-2 focus:outline-none',
-                      'disabled:cursor-not-allowed disabled:opacity-50'
+                      'w-full rounded-2xl px-6 py-3 font-semibold text-white transition-all duration-300',
+                      'bg-primary-600 hover:bg-primary-700 hover:-translate-y-1 hover:shadow-lg',
+                      'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0'
                     )}
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'}
                   </button>
                 </form>
               </div>
-            </div>
+            </BentoCard>
 
-            {/* Contact Info & Social */}
-            <div className="order-1 space-y-8 lg:order-2">
-              {/* Contact Information */}
-              <div>
-                <h3 className="mb-6 text-2xl font-bold text-neutral-900">Let's Connect</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-primary-100 flex h-12 w-12 items-center justify-center rounded-full">
-                      <MailIcon className="text-primary-600 h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-neutral-900">Email</h4>
-                      <a
-                        href={`mailto:${contactInfo.email}`}
-                        className="text-primary-600 hover:text-primary-700 transition-colors"
-                      >
-                        {contactInfo.email}
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-primary-100 flex h-12 w-12 items-center justify-center rounded-full">
-                      <LocationIcon className="text-primary-600 h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-neutral-900">Location</h4>
-                      <p className="text-neutral-600">{contactInfo.location}</p>
-                    </div>
-                  </div>
+            {/* Email Card */}
+            <BentoCard className="col-span-1">
+              <div className="space-y-3">
+                <div className="bg-primary-600 flex h-12 w-12 items-center justify-center rounded-2xl">
+                  <MailIcon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="mb-2 font-bold text-neutral-900">Email</h4>
+                  <a
+                    href={`mailto:${contactInfo.email}`}
+                    className="text-primary-600 hover:text-primary-700 text-sm transition-colors"
+                  >
+                    {contactInfo.email}
+                  </a>
                 </div>
               </div>
+            </BentoCard>
 
-              {/* Social Media Links */}
-              <div>
-                <h3 className="mb-6 text-2xl font-bold text-neutral-900">Follow Me</h3>
-                <div className="flex space-x-4">
+            {/* Location Card */}
+            <BentoCard className="col-span-1">
+              <div className="space-y-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500">
+                  <LocationIcon className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="mb-2 font-bold text-neutral-900">Location</h4>
+                  <p className="text-sm text-neutral-600">{contactInfo.location}</p>
+                </div>
+              </div>
+            </BentoCard>
+
+            {/* Social Links Card */}
+            <BentoCard className="col-span-1">
+              <div className="space-y-4">
+                <h4 className="font-bold text-neutral-900">Connect</h4>
+                <div className="flex gap-3">
                   <a
                     href={contactInfo.social.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      'flex h-12 w-12 items-center justify-center rounded-full',
-                      'bg-neutral-900 text-white transition-all duration-200',
+                      'flex h-10 w-10 items-center justify-center rounded-xl',
+                      'bg-neutral-900 text-white transition-all duration-300',
                       'hover:scale-110 hover:bg-neutral-700'
                     )}
                   >
-                    <GithubIcon className="h-6 w-6" />
+                    <GithubIcon className="h-5 w-5" />
                   </a>
 
                   <a
@@ -305,12 +297,12 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={cn(
-                      'flex h-12 w-12 items-center justify-center rounded-full',
-                      'bg-blue-600 text-white transition-all duration-200',
+                      'flex h-10 w-10 items-center justify-center rounded-xl',
+                      'bg-blue-600 text-white transition-all duration-300',
                       'hover:scale-110 hover:bg-blue-500'
                     )}
                   >
-                    <LinkedinIcon className="h-6 w-6" />
+                    <LinkedinIcon className="h-5 w-5" />
                   </a>
 
                   {contactInfo.social.instagram && (
@@ -319,27 +311,18 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={cn(
-                        'flex h-12 w-12 items-center justify-center rounded-full',
-                        'bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-200',
-                        'hover:scale-110 hover:from-purple-400 hover:to-pink-400'
+                        'flex h-10 w-10 items-center justify-center rounded-xl',
+                        'bg-gradient-to-r from-purple-500 to-pink-500 text-white transition-all duration-300',
+                        'hover:scale-110'
                       )}
                     >
-                      <InstagramIcon className="h-6 w-6" />
+                      <InstagramIcon className="h-5 w-5" />
                     </a>
                   )}
                 </div>
               </div>
-
-              {/* Response Time */}
-              <div className="bg-primary-50 border-primary-100 rounded-lg border p-6">
-                <h4 className="text-primary-900 mb-2 font-semibold">Quick Response</h4>
-                <p className="text-primary-700 text-sm">
-                  I typically respond to messages within 24 hours. For urgent inquiries, feel free
-                  to reach out on LinkedIn.
-                </p>
-              </div>
-            </div>
-          </div>
+            </BentoCard>
+          </BentoGrid>
         </div>
       </div>
     </section>
