@@ -11,7 +11,7 @@ export function Layout({ children, headerContent, footerContent, className }: La
   return (
     <div className={cn('flex min-h-screen flex-col', className)}>
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur-sm">
+      <header className="glass sticky top-0 z-50 border-b border-white/20">
         <div className="container mx-auto px-4 py-4">{headerContent || <DefaultHeader />}</div>
       </header>
 
@@ -39,12 +39,12 @@ function DefaultHeader() {
     <nav className="flex items-center justify-between">
       <div className="text-xl font-bold text-neutral-900">Anawat Muangjai</div>
 
-      <div className="hidden items-center space-x-8 md:flex">
+      <div className="hidden items-center space-x-6 md:flex">
         {navigation.map(item => (
           <a
             key={item.href}
             href={item.href}
-            className="hover:text-primary-600 text-neutral-700 transition-colors duration-200"
+            className="hover:text-primary-600 text-sm font-medium text-neutral-700 transition-all duration-300 hover:-translate-y-0.5"
           >
             {item.label}
           </a>

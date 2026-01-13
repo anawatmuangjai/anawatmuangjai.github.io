@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
 import { cn } from '@/utils';
 import type { BaseComponentProps, Project } from '@/types';
 import { featuredProjects } from '@/data';
+import { BentoGrid, BentoCard } from './BentoGrid';
 
 interface FeaturedProjectsProps extends BaseComponentProps {
   title?: string;
@@ -12,160 +12,95 @@ export function FeaturedProjects({
   className,
 }: FeaturedProjectsProps) {
   return (
-    <section id="projects" className={cn('bg-neutral-50 py-20', className)}>
+    <section id="projects" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-          <div className="bg-primary-600 mx-auto h-1 w-24"></div>
-          <p className="mt-6 text-lg text-neutral-600">
-            Discover my latest work and contributions to the developer community
-          </p>
-        </div>
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
+            <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
+            <p className="mt-6 text-lg text-neutral-600">
+              Discover my latest work and contributions to the developer community
+            </p>
+          </div>
 
-        <ScrollingProjects projects={featuredProjects} />
+          <BentoGrid cols={3} gap="md">
+            {featuredProjects.map((project, idx) => (
+              <ProjectCard key={project.id} project={project} featured={idx === 0} />
+            ))}
+          </BentoGrid>
+        </div>
       </div>
     </section>
   );
 }
 
-// Scrolling Projects Component
-function ScrollingProjects({ projects }: { projects: Project[] }) {
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer || isHovered) return;
-
-    const scrollWidth = scrollContainer.scrollWidth;
-    const clientWidth = scrollContainer.clientWidth;
-    const maxScroll = scrollWidth - clientWidth;
-
-    let animationId: number;
-    let startTime: number;
-    const duration = 30000; // 30 seconds for full cycle
-
-    const animate = (currentTime: number) => {
-      if (!startTime) startTime = currentTime;
-      const elapsed = currentTime - startTime;
-      const progress = (elapsed % duration) / duration;
-
-      const scrollPosition = progress * maxScroll;
-      scrollContainer.scrollLeft = scrollPosition;
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-
-    return () => {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    };
-  }, [isHovered]);
-
-  return (
-    <div
-      ref={scrollRef}
-      className="flex gap-6 overflow-x-hidden pb-4"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      style={{ scrollBehavior: 'auto' }}
-    >
-      {/* Render projects twice for seamless loop */}
-      {[...projects, ...projects].map((project, index) => (
-        <ProjectCard key={`${project.id}-${index}`} project={project} className="flex-shrink-0" />
-      ))}
-    </div>
-  );
-}
-
 // Project Card Component
-function ProjectCard({ project, className }: { project: Project; className?: string }) {
-  const getStatusColor = (status: Project['status']) => {
-    switch (status) {
-      case 'completed':
-        return 'bg-green-100 text-green-800';
-      case 'in-progress':
-        return 'bg-yellow-100 text-yellow-800';
-      case 'planned':
-        return 'bg-blue-100 text-blue-800';
-      default:
-        return 'bg-gray-100 text-gray-800';
-    }
-  };
-
+function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   const getStatusLabel = (status: Project['status']) => {
     switch (status) {
       case 'completed':
-        return 'Completed';
+        return '✓';
       case 'in-progress':
-        return 'In Progress';
+        return '⚡';
       case 'planned':
-        return 'Planned';
+        return '📋';
       default:
-        return 'Unknown';
+        return '•';
     }
   };
 
   return (
-    <div
-      className={cn(
-        'w-80 rounded-xl bg-white p-6 shadow-lg transition-all duration-300',
-        'border border-neutral-200 hover:-translate-y-2 hover:shadow-xl',
-        className
-      )}
+    <BentoCard
+      className={cn('col-span-1 md:col-span-1', featured && 'md:col-span-2 lg:col-span-2')}
     >
-      {/* Project Header */}
-      <div className="mb-4">
-        <div className="mb-3 flex items-start justify-between">
-          <h3 className="text-xl leading-tight font-bold text-neutral-900">{project.title}</h3>
-          <span
-            className={cn(
-              'rounded-full px-2 py-1 text-xs font-medium',
-              getStatusColor(project.status)
-            )}
-          >
-            {getStatusLabel(project.status)}
-          </span>
-        </div>
-
-        <p className="line-clamp-3 text-sm leading-relaxed text-neutral-600">
-          {project.description}
-        </p>
-      </div>
-
-      {/* Technologies */}
-      <div className="mb-4">
-        <div className="flex flex-wrap gap-1">
-          {project.technologies.slice(0, 4).map(tech => (
-            <span
-              key={tech}
-              className="rounded-md bg-neutral-100 px-2 py-1 text-xs font-medium text-neutral-700"
+      <div className="flex h-full flex-col">
+        {/* Project Header */}
+        <div className="mb-4 flex items-start justify-between">
+          <div className="flex-1">
+            <div className="mb-2 flex items-center space-x-2">
+              <span className="text-lg">{getStatusLabel(project.status)}</span>
+              <h3 className="text-xl font-bold text-neutral-900">{project.title}</h3>
+            </div>
+            <p
+              className={cn(
+                'text-sm leading-relaxed text-neutral-600',
+                featured ? 'line-clamp-3' : 'line-clamp-2'
+              )}
             >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 4 && (
-            <span className="rounded-md bg-neutral-100 px-2 py-1 text-xs font-medium text-neutral-500">
-              +{project.technologies.length - 4}
-            </span>
-          )}
+              {project.description}
+            </p>
+          </div>
         </div>
-      </div>
 
-      {/* Project Links */}
-      <div className="flex items-center justify-between">
-        <div className="flex gap-3">
+        {/* Technologies */}
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, featured ? 6 : 3).map(tech => (
+              <span
+                key={tech}
+                className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-700"
+              >
+                {tech}
+              </span>
+            ))}
+            {project.technologies.length > (featured ? 6 : 3) && (
+              <span className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-500">
+                +{project.technologies.length - (featured ? 6 : 3)}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Project Links */}
+        <div className="mt-auto flex items-center gap-3">
           {project.githubUrl && (
             <a
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                'flex items-center gap-1 text-sm font-medium text-neutral-600',
-                'transition-colors duration-200 hover:text-neutral-900'
+                'neuro-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700',
+                'transition-all duration-200'
               )}
             >
               <GithubIcon className="h-4 w-4" />
@@ -179,20 +114,17 @@ function ProjectCard({ project, className }: { project: Project; className?: str
               target="_blank"
               rel="noopener noreferrer"
               className={cn(
-                'text-primary-600 flex items-center gap-1 text-sm font-medium',
-                'hover:text-primary-700 transition-colors duration-200'
+                'neuro-button neuro-button-primary flex items-center gap-2 px-4 py-2 text-sm font-medium',
+                'transition-all duration-200'
               )}
             >
               <ExternalLinkIcon className="h-4 w-4" />
-              Live Demo
+              Demo
             </a>
           )}
         </div>
-
-        {/* Category Badge */}
-        <span className="text-xs text-neutral-500 capitalize">{project.category}</span>
       </div>
-    </div>
+    </BentoCard>
   );
 }
 

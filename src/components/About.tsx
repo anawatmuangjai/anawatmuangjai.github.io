@@ -1,6 +1,7 @@
 import { cn } from '@/utils';
-import type { BaseComponentProps, Experience } from '@/types';
+import type { BaseComponentProps } from '@/types';
 import { experiences } from '@/data';
+import { BentoGrid, BentoCard } from './BentoGrid';
 
 interface AboutProps extends BaseComponentProps {
   title?: string;
@@ -13,83 +14,55 @@ export function About({
   className,
 }: AboutProps) {
   return (
-    <section id="about" className={cn('bg-white py-20', className)}>
+    <section id="about" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-16 text-center">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
-            <div className="bg-primary-600 mx-auto h-1 w-24"></div>
+            <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
           </div>
 
-          <div className="grid items-start gap-16 lg:grid-cols-2">
-            {/* Left Column: Profile & Info */}
-            <div className="space-y-8">
-              {/* Profile Image */}
-              <div className="flex justify-center lg:justify-start">
-                <div className="group relative">
-                  <div className="from-primary-400 to-primary-600 absolute -inset-4 rounded-full bg-gradient-to-r opacity-20 blur transition duration-300 group-hover:opacity-30"></div>
-                  <div className="relative h-64 w-64 overflow-hidden rounded-full border-4 border-white shadow-xl">
-                    <img
-                      src="/img/am.jpg"
-                      alt="Anawat Muangjai - Full Stack Developer"
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                    <div className="to-primary-500/10 absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-transparent"></div>
-                  </div>
-
-                  {/* Status Badge */}
-                  <div className="absolute right-4 bottom-4 flex items-center space-x-2 rounded-full border bg-white px-3 py-2 shadow-lg">
-                    <div className="h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
-                    <span className="text-sm font-medium text-neutral-700">Available for work</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Introduction */}
-              <div className="space-y-6 text-center lg:text-left">
-                <div>
+          <BentoGrid cols={3} gap="md">
+            {/* Bio Card - Spans 2 columns */}
+            <BentoCard
+              className="col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2"
+              glassVariant="strong"
+            >
+              <div className="flex h-full flex-col">
+                <div className="mb-6">
                   <h3 className="mb-2 text-2xl font-bold text-neutral-900">Hello, I'm Anawat 👋</h3>
-                  <p className="text-primary-600 text-lg font-medium">
+                  <p className="text-primary-600 text-lg font-semibold">
                     Full Stack Developer & Problem Solver
                   </p>
                 </div>
 
-                <p className="text-lg leading-relaxed text-balance text-neutral-600">
+                <p className="mb-6 text-base leading-relaxed text-balance text-neutral-600">
                   {description}
                 </p>
 
-                {/* Quick Highlights */}
-                <div className="space-y-3">
-                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
-                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
-                      <span className="text-primary-600 text-sm">🎯</span>
+                {/* Highlights */}
+                <div className="mb-6 space-y-3">
+                  {[
+                    { icon: '🎯', text: 'Clean, scalable solutions' },
+                    { icon: '🚀', text: 'Modern web technologies' },
+                    { icon: '💡', text: 'Continuous learning' },
+                  ].map((item, idx) => (
+                    <div key={idx} className="flex items-center space-x-3">
+                      <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-xl">
+                        <span className="text-sm">{item.icon}</span>
+                      </div>
+                      <span className="text-sm text-neutral-700">{item.text}</span>
                     </div>
-                    <span className="text-neutral-700">Focused on clean, scalable solutions</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
-                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
-                      <span className="text-primary-600 text-sm">🚀</span>
-                    </div>
-                    <span className="text-neutral-700">
-                      Passionate about modern web technologies
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-3 lg:justify-start">
-                    <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-full">
-                      <span className="text-primary-600 text-sm">💡</span>
-                    </div>
-                    <span className="text-neutral-700">Always learning and sharing knowledge</span>
-                  </div>
+                  ))}
                 </div>
 
-                {/* CTA Button */}
-                <div className="pt-4">
+                <div className="mt-auto">
                   <a
                     href="#contact"
                     className={cn(
+                      'neuro-button neuro-button-primary',
                       'inline-flex items-center',
-                      'bg-primary-600 rounded-lg px-8 py-3 font-semibold text-white',
-                      'hover:bg-primary-700 hover:-translate-y-0.5 hover:shadow-lg',
+                      'px-6 py-3 font-semibold',
                       'transition-all duration-200'
                     )}
                   >
@@ -109,108 +82,72 @@ export function About({
                     </svg>
                   </a>
                 </div>
+              </div>
+            </BentoCard>
 
-                {/* Quick Stats */}
-                <div className="grid grid-cols-3 gap-4 pt-6">
-                  <div className="text-center lg:text-left">
-                    <div className="text-primary-600 text-3xl font-bold">5+</div>
-                    <div className="text-sm text-neutral-600">Years Experience</div>
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <div className="text-primary-600 text-3xl font-bold">20+</div>
-                    <div className="text-sm text-neutral-600">Projects Delivered</div>
-                  </div>
-                  <div className="text-center lg:text-left">
-                    <div className="text-primary-600 text-3xl font-bold">10+</div>
-                    <div className="text-sm text-neutral-600">Technologies</div>
+            {/* Profile Image Card */}
+            <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1" padding="none">
+              <div className="relative h-full min-h-[240px] overflow-hidden">
+                <div className="from-primary-300 absolute inset-0 bg-gradient-to-br to-primary-500"></div>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm">
+                      <span className="text-4xl font-bold text-white">AM</span>
+                    </div>
+                    <p className="text-sm font-medium text-white">👋</p>
                   </div>
                 </div>
               </div>
-            </div>
+            </BentoCard>
 
-            {/* Right Column: Experience Timeline */}
-            <div className="lg:pl-8">
-              <div className="sticky top-8">
-                <h3 className="mb-8 flex items-center text-2xl font-bold text-neutral-900">
-                  <span className="mr-3">💼</span>
-                  Experience Journey
-                </h3>
-                <ExperienceTimeline experiences={experiences} />
-              </div>
-            </div>
-          </div>
+            {/* Experience Cards */}
+            {experiences.slice(0, 3).map((exp, idx) => (
+              <BentoCard
+                key={exp.id}
+                className={cn('col-span-1', idx === 0 && 'md:col-span-2 lg:col-span-1')}
+              >
+                <div className="space-y-3">
+                  <div className="flex items-start justify-between">
+                    <div
+                      className={cn(
+                        'flex h-10 w-10 items-center justify-center rounded-xl',
+                        idx === 0 ? 'bg-primary-600' : 'bg-neutral-300'
+                      )}
+                    >
+                      <span className="text-lg">{idx === 0 ? '💼' : '📋'}</span>
+                    </div>
+                    {idx === 0 && (
+                      <span className="glass rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                        Current
+                      </span>
+                    )}
+                  </div>
+
+                  <div>
+                    <h4 className="text-base font-bold text-neutral-900">{exp.title}</h4>
+                    <p className="text-primary-600 text-sm font-medium">{exp.company}</p>
+                    <p className="mt-1 text-xs text-neutral-500">
+                      {new Date(exp.startDate).getFullYear()} -{' '}
+                      {exp.endDate ? new Date(exp.endDate).getFullYear() : 'Present'}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-1 pt-2">
+                    {exp.technologies.slice(0, 3).map(tech => (
+                      <span
+                        key={tech}
+                        className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-700"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </BentoCard>
+            ))}
+          </BentoGrid>
         </div>
       </div>
     </section>
-  );
-}
-
-// Experience Timeline Component
-function ExperienceTimeline({ experiences }: { experiences: Experience[] }) {
-  const formatDate = (dateString: string | null) => {
-    if (!dateString) return 'Present';
-    const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
-  };
-
-  return (
-    <div className="relative">
-      {/* Timeline line */}
-      <div className="absolute top-0 bottom-0 left-4 w-px bg-neutral-200"></div>
-
-      <div className="space-y-8">
-        {experiences.map((experience, index) => (
-          <div key={experience.id} className="relative pl-12">
-            {/* Timeline dot */}
-            <div
-              className={cn(
-                'absolute top-2 left-0 h-8 w-8 rounded-full border-4 border-white shadow-md',
-                index === 0 ? 'bg-primary-600' : 'bg-neutral-400'
-              )}
-            >
-              {index === 0 && (
-                <div className="bg-primary-600 absolute inset-0 animate-pulse rounded-full opacity-75"></div>
-              )}
-            </div>
-
-            {/* Experience content */}
-            <div className="space-y-3">
-              <div>
-                <h4 className="text-lg font-bold text-neutral-900">{experience.title}</h4>
-                <p className="text-primary-600 font-medium">{experience.company}</p>
-                <p className="text-sm text-neutral-500">
-                  {formatDate(experience.startDate)} - {formatDate(experience.endDate)} •{' '}
-                  {experience.location}
-                </p>
-              </div>
-
-              <p className="text-sm leading-relaxed text-neutral-600">{experience.description}</p>
-
-              {/* Key achievements */}
-              <div className="space-y-1">
-                {experience.achievements.slice(0, 2).map((achievement, idx) => (
-                  <div key={idx} className="flex items-start space-x-2">
-                    <div className="bg-primary-600 mt-2 h-1 w-1 flex-shrink-0 rounded-full"></div>
-                    <p className="text-sm text-neutral-600">{achievement}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-1 pt-2">
-                {experience.technologies.slice(0, 4).map(tech => (
-                  <span
-                    key={tech}
-                    className="rounded-md bg-neutral-100 px-2 py-1 text-xs font-medium text-neutral-700"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
   );
 }
