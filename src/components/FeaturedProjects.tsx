@@ -24,7 +24,7 @@ export function FeaturedProjects({
           </div>
 
           {/* Auto-sliding Testimonial-style Carousel */}
-          <div className="testimonial-carousel">
+          <div className="testimonial-carousel py-4">
             <div className="testimonial-track">
               {/* Duplicate projects for infinite scroll effect */}
               {[...featuredProjects, ...featuredProjects].map((project, idx) => (
@@ -64,7 +64,7 @@ function ProjectCard({
 
   return (
     <BentoCard className={cn('hover-lift scroll-reveal-scale h-full')}>
-      <div className="flex h-full min-h-[400px] flex-col">
+      <div className="flex h-full min-h-[320px] flex-col">
         {/* Project Header */}
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1">
