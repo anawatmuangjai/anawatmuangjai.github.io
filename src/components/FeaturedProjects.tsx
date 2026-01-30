@@ -25,7 +25,7 @@ export function FeaturedProjects({
 
           <BentoGrid cols={3} gap="md">
             {featuredProjects.map((project, idx) => (
-              <ProjectCard key={project.id} project={project} featured={idx === 0} />
+              <ProjectCard key={project.id} project={project} featured={idx === 0} index={idx} />
             ))}
           </BentoGrid>
         </div>
@@ -35,7 +35,15 @@ export function FeaturedProjects({
 }
 
 // Project Card Component
-function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+function ProjectCard({
+  project,
+  featured = false,
+  index = 0,
+}: {
+  project: Project;
+  featured?: boolean;
+  index?: number;
+}) {
   const getStatusLabel = (status: Project['status']) => {
     switch (status) {
       case 'completed':
@@ -49,9 +57,28 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
     }
   };
 
+  const animationClass = index % 2 === 0 ? 'animate-slide-up' : 'animate-slide-down';
+  const delayClass =
+    index === 0
+      ? 'animation-delay-100'
+      : index === 1
+        ? 'animation-delay-200'
+        : index === 2
+          ? 'animation-delay-300'
+          : index === 3
+            ? 'animation-delay-400'
+            : index === 4
+              ? 'animation-delay-500'
+              : 'animation-delay-600';
+
   return (
     <BentoCard
-      className={cn('col-span-1 md:col-span-1', featured && 'md:col-span-2 lg:col-span-2')}
+      className={cn(
+        'hover-lift col-span-1 md:col-span-1',
+        featured && 'md:col-span-2 lg:col-span-2',
+        animationClass,
+        delayClass
+      )}
     >
       <div className="flex h-full flex-col">
         {/* Project Header */}
@@ -75,16 +102,17 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
         {/* Technologies */}
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, featured ? 6 : 3).map(tech => (
+            {project.technologies.slice(0, featured ? 6 : 3).map((tech, techIdx) => (
               <span
                 key={tech}
-                className="neuro-badge px-2.5 py-1 text-xs font-medium text-neutral-700 transition-all hover:scale-105"
+                className="neuro-badge hover-glow animate-fade-in-scale px-2.5 py-1 text-xs font-medium text-neutral-700 transition-all hover:scale-110"
+                style={{ animationDelay: `${0.5 + techIdx * 0.1}s` }}
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > (featured ? 6 : 3) && (
-              <span className="neuro-badge px-2.5 py-1 text-xs font-medium text-neutral-500">
+              <span className="neuro-badge animate-fade-in px-2.5 py-1 text-xs font-medium text-neutral-500">
                 +{project.technologies.length - (featured ? 6 : 3)}
               </span>
             )}
@@ -100,10 +128,10 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               rel="noopener noreferrer"
               className={cn(
                 'neuro-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700',
-                'transition-all duration-200'
+                'hover-scale group transition-all duration-200'
               )}
             >
-              <GithubIcon className="h-4 w-4" />
+              <GithubIcon className="h-4 w-4 transition-transform group-hover:rotate-12" />
               Code
             </a>
           )}

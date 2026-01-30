@@ -47,8 +47,12 @@ export function About({
                     { icon: '🚀', text: 'Modern web technologies' },
                     { icon: '💡', text: 'Continuous learning' },
                   ].map((item, idx) => (
-                    <div key={idx} className="flex items-center space-x-3">
-                      <div className="bg-primary-100 flex h-8 w-8 items-center justify-center rounded-xl">
+                    <div
+                      key={idx}
+                      className="animate-slide-right flex items-center space-x-3"
+                      style={{ animationDelay: `${0.3 + idx * 0.1}s` }}
+                    >
+                      <div className="bg-primary-100 hover-rotate flex h-8 w-8 items-center justify-center rounded-xl transition-all">
                         <span className="text-sm">{item.icon}</span>
                       </div>
                       <span className="text-sm text-neutral-700">{item.text}</span>
@@ -60,15 +64,16 @@ export function About({
                   <a
                     href="#contact"
                     className={cn(
-                      'neuro-button neuro-button-primary',
+                      'neuro-button neuro-button-primary hover-lift group',
                       'inline-flex items-center',
                       'px-6 py-3 font-semibold',
-                      'transition-all duration-200'
+                      'transition-all duration-200',
+                      'animate-fade-in-scale animation-delay-600'
                     )}
                   >
                     Let's Work Together
                     <svg
-                      className="ml-2 h-4 w-4"
+                      className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -86,15 +91,18 @@ export function About({
             </BentoCard>
 
             {/* Profile Image Card */}
-            <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1" padding="none">
+            <BentoCard
+              className="animate-bounce-in animation-delay-300 col-span-1 md:col-span-1 lg:col-span-1"
+              padding="none"
+            >
               <div className="relative h-full min-h-[240px] overflow-hidden">
                 <div className="from-primary-300 to-primary-500 absolute inset-0 bg-gradient-to-br"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
-                    <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm">
+                    <div className="animate-float-gentle mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm">
                       <span className="text-4xl font-bold text-white">AM</span>
                     </div>
-                    <p className="text-sm font-medium text-white">👋</p>
+                    <p className="animate-bounce text-sm font-medium text-white">👋</p>
                   </div>
                 </div>
               </div>
@@ -104,7 +112,14 @@ export function About({
             {experiences.slice(0, 3).map((exp, idx) => (
               <BentoCard
                 key={exp.id}
-                className={cn('col-span-1', idx === 0 && 'md:col-span-2 lg:col-span-1')}
+                className={cn(
+                  'hover-lift col-span-1',
+                  idx === 0 && 'md:col-span-2 lg:col-span-1',
+                  'animate-slide-up',
+                  idx === 0 && 'animation-delay-400',
+                  idx === 1 && 'animation-delay-500',
+                  idx === 2 && 'animation-delay-600'
+                )}
               >
                 <div className="space-y-3">
                   <div className="flex items-start justify-between">
