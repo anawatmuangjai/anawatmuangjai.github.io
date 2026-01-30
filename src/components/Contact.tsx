@@ -89,7 +89,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
     <section id="contact" className={cn('bg-neutral-50 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
@@ -99,7 +99,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
 
           <BentoGrid cols={3} gap="md">
             {/* Contact Form - Spans 2 columns */}
-            <BentoCard className="col-span-1 md:col-span-2 lg:col-span-2">
+            <BentoCard className="scroll-reveal-left col-span-1 md:col-span-2 lg:col-span-2">
               <div>
                 <h3 className="mb-6 text-2xl font-bold text-neutral-900">Send Message</h3>
 
@@ -239,7 +239,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
             </BentoCard>
 
             {/* Email Card */}
-            <BentoCard className="col-span-1">
+            <BentoCard className="scroll-reveal-right col-span-1">
               <div className="space-y-3">
                 <div className="from-primary-300 to-primary-500 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br">
                   <MailIcon className="h-6 w-6 text-white" />
@@ -257,7 +257,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
             </BentoCard>
 
             {/* Location Card */}
-            <BentoCard className="col-span-1">
+            <BentoCard className="scroll-reveal-right col-span-1">
               <div className="space-y-3">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500">
                   <LocationIcon className="h-6 w-6 text-white" />
@@ -270,7 +270,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
             </BentoCard>
 
             {/* Social Links Card */}
-            <BentoCard className="col-span-1">
+            <BentoCard className="scroll-reveal-right col-span-1">
               <div className="space-y-4">
                 <h4 className="font-bold text-neutral-900">Connect</h4>
                 <div className="flex gap-3">

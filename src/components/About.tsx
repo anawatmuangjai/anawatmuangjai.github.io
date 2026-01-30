@@ -17,7 +17,7 @@ export function About({
     <section id="about" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
           </div>
@@ -25,7 +25,7 @@ export function About({
           <BentoGrid cols={3} gap="md">
             {/* Bio Card - Spans 2 columns */}
             <BentoCard
-              className="col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2"
+              className="scroll-reveal-left col-span-1 md:col-span-2 lg:col-span-2 lg:row-span-2"
               glassVariant="strong"
             >
               <div className="flex h-full flex-col">

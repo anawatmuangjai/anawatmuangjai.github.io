@@ -39,7 +39,7 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
     <section id="skills" className={cn('bg-neutral-50 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-600">
@@ -52,7 +52,7 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
               <BentoCard
                 key={category.name}
                 className={cn(
-                  'col-span-1 md:col-span-1 lg:col-span-1',
+                  'scroll-reveal-scale col-span-1 md:col-span-1 lg:col-span-1',
                   'animate-slide-up hover-lift',
                   idx === 0 && 'animation-delay-100',
                   idx === 1 && 'animation-delay-200',

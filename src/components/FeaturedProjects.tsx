@@ -1,7 +1,7 @@
 import { cn } from '@/utils';
 import type { BaseComponentProps, Project } from '@/types';
 import { featuredProjects } from '@/data';
-import { BentoGrid, BentoCard } from './BentoGrid';
+import { BentoCard } from './BentoGrid';
 
 interface FeaturedProjectsProps extends BaseComponentProps {
   title?: string;
@@ -15,7 +15,7 @@ export function FeaturedProjects({
     <section id="projects" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
@@ -23,11 +23,16 @@ export function FeaturedProjects({
             </p>
           </div>
 
-          <BentoGrid cols={3} gap="md">
-            {featuredProjects.map((project, idx) => (
-              <ProjectCard key={project.id} project={project} featured={idx === 0} index={idx} />
-            ))}
-          </BentoGrid>
+          {/* Horizontal Scrolling Projects */}
+          <div className="relative">
+            <div className="horizontal-scroll-container">
+              {featuredProjects.map((project, idx) => (
+                <div key={project.id} className="horizontal-scroll-item">
+                  <ProjectCard project={project} featured={idx === 0} index={idx} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -38,7 +43,6 @@ export function FeaturedProjects({
 function ProjectCard({
   project,
   featured = false,
-  index = 0,
 }: {
   project: Project;
   featured?: boolean;
@@ -57,30 +61,9 @@ function ProjectCard({
     }
   };
 
-  const animationClass = index % 2 === 0 ? 'animate-slide-up' : 'animate-slide-down';
-  const delayClass =
-    index === 0
-      ? 'animation-delay-100'
-      : index === 1
-        ? 'animation-delay-200'
-        : index === 2
-          ? 'animation-delay-300'
-          : index === 3
-            ? 'animation-delay-400'
-            : index === 4
-              ? 'animation-delay-500'
-              : 'animation-delay-600';
-
   return (
-    <BentoCard
-      className={cn(
-        'hover-lift col-span-1 md:col-span-1',
-        featured && 'md:col-span-2 lg:col-span-2',
-        animationClass,
-        delayClass
-      )}
-    >
-      <div className="flex h-full flex-col">
+    <BentoCard className={cn('hover-lift scroll-reveal-scale h-full')}>
+      <div className="flex h-full min-h-[400px] flex-col">
         {/* Project Header */}
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1">

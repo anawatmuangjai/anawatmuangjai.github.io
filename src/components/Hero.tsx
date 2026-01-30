@@ -51,8 +51,8 @@ export function Hero({
                 </div>
 
                 <div>
-                  <h1 className="animate-slide-down mb-3 text-5xl leading-tight font-bold text-neutral-900 md:text-6xl lg:text-7xl">
-                    <span className="block text-balance">{headline}</span>
+                  <h1 className="animate-slide-down mb-3 text-5xl leading-tight font-bold md:text-6xl lg:text-7xl">
+                    <span className="text-shimmer block text-balance">{headline}</span>
                   </h1>
                   <h2 className="text-primary-600 animate-slide-up animation-delay-200 mb-6 text-2xl font-semibold lg:text-3xl">
                     {subheadline}
