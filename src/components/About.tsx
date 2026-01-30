@@ -88,7 +88,7 @@ export function About({
             {/* Profile Image Card */}
             <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1" padding="none">
               <div className="relative h-full min-h-[240px] overflow-hidden">
-                <div className="from-primary-300 absolute inset-0 bg-gradient-to-br to-primary-500"></div>
+                <div className="from-primary-300 to-primary-500 absolute inset-0 bg-gradient-to-br"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="text-center">
                     <div className="mx-auto mb-3 flex h-20 w-20 items-center justify-center rounded-full bg-white/30 backdrop-blur-sm">
@@ -117,7 +117,7 @@ export function About({
                       <span className="text-lg">{idx === 0 ? '💼' : '📋'}</span>
                     </div>
                     {idx === 0 && (
-                      <span className="glass rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
+                      <span className="neuro-badge rounded-full px-2 py-1 text-xs font-medium text-neutral-700">
                         Current
                       </span>
                     )}
@@ -136,7 +136,7 @@ export function About({
                     {exp.technologies.slice(0, 3).map(tech => (
                       <span
                         key={tech}
-                        className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-700"
+                        className="neuro-badge px-2 py-1 text-xs font-medium text-neutral-700 transition-all hover:scale-105"
                       >
                         {tech}
                       </span>

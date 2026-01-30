@@ -27,18 +27,13 @@ export function Hero({
   return (
     <section
       id="home"
-      className={cn(
-        'relative min-h-screen py-20',
-        'bg-neutral-50',
-        'overflow-hidden',
-        className
-      )}
+      className={cn('relative min-h-screen py-20', 'bg-neutral-50', 'overflow-hidden', className)}
     >
       {/* Background Gradient Orbs */}
       <div className="absolute inset-0 opacity-20">
         <div className="bg-primary-300 animate-blob absolute top-20 left-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-40 right-20 h-96 w-96 rounded-full bg-primary-200 mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-96 w-96 rounded-full bg-primary-100 mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-2000 bg-primary-200 absolute top-40 right-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-4000 bg-primary-100 absolute bottom-20 left-1/3 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
@@ -171,7 +166,7 @@ export function Hero({
                 {['React', 'TypeScript', '.NET', 'Tailwind'].map(tech => (
                   <span
                     key={tech}
-                    className="glass rounded-xl px-3 py-1.5 text-sm font-medium text-neutral-700"
+                    className="neuro-badge px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all hover:scale-105"
                   >
                     {tech}
                   </span>

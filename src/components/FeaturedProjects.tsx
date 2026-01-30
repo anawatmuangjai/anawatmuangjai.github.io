@@ -78,13 +78,13 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
             {project.technologies.slice(0, featured ? 6 : 3).map(tech => (
               <span
                 key={tech}
-                className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-700"
+                className="neuro-badge px-2.5 py-1 text-xs font-medium text-neutral-700 transition-all hover:scale-105"
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > (featured ? 6 : 3) && (
-              <span className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-500">
+              <span className="neuro-badge px-2.5 py-1 text-xs font-medium text-neutral-500">
                 +{project.technologies.length - (featured ? 6 : 3)}
               </span>
             )}

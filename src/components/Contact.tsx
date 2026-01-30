@@ -137,8 +137,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                         value={formData.name}
                         onChange={handleInputChange}
                         className={cn(
-                          'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
-                          'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                          'neuro-input w-full px-4 py-3 text-neutral-900',
                           errors['name'] && 'ring-2 ring-red-300'
                         )}
                         placeholder="Your name"
@@ -163,8 +162,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                         value={formData.email}
                         onChange={handleInputChange}
                         className={cn(
-                          'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
-                          'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                          'neuro-input w-full px-4 py-3 text-neutral-900',
                           errors['email'] && 'ring-2 ring-red-300'
                         )}
                         placeholder="your.email@example.com"
@@ -190,8 +188,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                       value={formData.subject}
                       onChange={handleInputChange}
                       className={cn(
-                        'glass w-full rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
-                        'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                        'neuro-input w-full px-4 py-3 text-neutral-900',
                         errors['subject'] && 'ring-2 ring-red-300'
                       )}
                       placeholder="Project inquiry, collaboration, etc."
@@ -216,8 +213,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
                       value={formData.message}
                       onChange={handleInputChange}
                       className={cn(
-                        'glass w-full resize-none rounded-xl border-0 px-4 py-3 text-neutral-900 transition-all',
-                        'focus:ring-primary-500/30 focus:ring-2 focus:outline-none',
+                        'neuro-input w-full resize-none px-4 py-3 text-neutral-900',
                         errors['message'] && 'ring-2 ring-red-300'
                       )}
                       placeholder="Tell me about your project or how we can work together..."
@@ -245,7 +241,7 @@ export function Contact({ title = 'Get In Touch', className }: ContactProps) {
             {/* Email Card */}
             <BentoCard className="col-span-1">
               <div className="space-y-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-300 to-primary-500">
+                <div className="from-primary-300 to-primary-500 flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br">
                   <MailIcon className="h-6 w-6 text-white" />
                 </div>
                 <div>

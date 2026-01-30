@@ -69,7 +69,7 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
                     {category.skills.map(skill => (
                       <div
                         key={skill.name}
-                        className="group glass rounded-xl px-3 py-2 transition-all duration-300 hover:bg-neutral-100"
+                        className="group neuro-badge px-3 py-2 transition-all duration-300 hover:scale-105"
                       >
                         <div className="flex items-center space-x-2">
                           <SkillIcon name={skill.icon || ''} />
