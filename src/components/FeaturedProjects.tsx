@@ -23,11 +23,12 @@ export function FeaturedProjects({
             </p>
           </div>
 
-          {/* Horizontal Scrolling Projects */}
-          <div className="relative">
-            <div className="horizontal-scroll-container">
-              {featuredProjects.map((project, idx) => (
-                <div key={project.id} className="horizontal-scroll-item">
+          {/* Auto-sliding Testimonial-style Carousel */}
+          <div className="testimonial-carousel">
+            <div className="testimonial-track">
+              {/* Duplicate projects for infinite scroll effect */}
+              {[...featuredProjects, ...featuredProjects].map((project, idx) => (
+                <div key={`${project.id}-${idx}`} className="testimonial-item">
                   <ProjectCard project={project} featured={idx === 0} index={idx} />
                 </div>
               ))}

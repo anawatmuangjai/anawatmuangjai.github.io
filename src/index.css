@@ -380,12 +380,20 @@ body {
 }
 
 .text-typing {
+  display: inline-block;
   overflow: hidden;
-  border-right: 3px solid var(--color-primary-500);
+  border-right: 3px solid rgba(212, 165, 116, 0.7);
   white-space: nowrap;
   animation:
-    typing 3.5s steps(40, end),
+    typing 4s steps(20, end) forwards,
     blink-caret 0.75s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-typing {
+    animation: none;
+    border-right: none;
+  }
 }
 
 /* Split text character animation */
@@ -514,6 +522,71 @@ body {
 
 .auto-scroll:hover {
   animation-play-state: paused;
+}
+
+/* Testimonial-style Auto-sliding Carousel */
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: testimonial-slide 40s linear infinite;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes testimonial-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 1.5rem));
+  }
+}
+
+.testimonial-item {
+  flex: 0 0 auto;
+  width: 350px;
+}
+
+@media (min-width: 768px) {
+  .testimonial-item {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-item {
+    width: 450px;
+  }
+}
+
+/* Fade gradient edges for infinite carousel effect */
+.testimonial-carousel::before,
+.testimonial-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.testimonial-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(245, 245, 244, 1), transparent);
+}
+
+.testimonial-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(245, 245, 244, 1), transparent);
 }
 
 /* Animation delays for staggered effects */
