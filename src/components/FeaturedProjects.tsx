@@ -1,7 +1,7 @@
 import { cn } from '@/utils';
 import type { BaseComponentProps, Project } from '@/types';
 import { featuredProjects } from '@/data';
-import { BentoGrid, BentoCard } from './BentoGrid';
+import { BentoCard } from './BentoGrid';
 
 interface FeaturedProjectsProps extends BaseComponentProps {
   title?: string;
@@ -15,7 +15,7 @@ export function FeaturedProjects({
     <section id="projects" className={cn('bg-neutral-100 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mt-6 text-lg text-neutral-600">
@@ -23,11 +23,17 @@ export function FeaturedProjects({
             </p>
           </div>
 
-          <BentoGrid cols={3} gap="md">
-            {featuredProjects.map((project, idx) => (
-              <ProjectCard key={project.id} project={project} featured={idx === 0} />
-            ))}
-          </BentoGrid>
+          {/* Auto-sliding Testimonial-style Carousel */}
+          <div className="testimonial-carousel py-4">
+            <div className="testimonial-track">
+              {/* Duplicate projects for infinite scroll effect */}
+              {[...featuredProjects, ...featuredProjects].map((project, idx) => (
+                <div key={`${project.id}-${idx}`} className="testimonial-item">
+                  <ProjectCard project={project} featured={idx === 0} index={idx} />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -35,7 +41,14 @@ export function FeaturedProjects({
 }
 
 // Project Card Component
-function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+function ProjectCard({
+  project,
+  featured = false,
+}: {
+  project: Project;
+  featured?: boolean;
+  index?: number;
+}) {
   const getStatusLabel = (status: Project['status']) => {
     switch (status) {
       case 'completed':
@@ -50,10 +63,8 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
   };
 
   return (
-    <BentoCard
-      className={cn('col-span-1 md:col-span-1', featured && 'md:col-span-2 lg:col-span-2')}
-    >
-      <div className="flex h-full flex-col">
+    <BentoCard className={cn('hover-lift scroll-reveal-scale h-full')}>
+      <div className="flex h-full min-h-[320px] flex-col">
         {/* Project Header */}
         <div className="mb-4 flex items-start justify-between">
           <div className="flex-1">
@@ -75,16 +86,17 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
         {/* Technologies */}
         <div className="mb-4">
           <div className="flex flex-wrap gap-2">
-            {project.technologies.slice(0, featured ? 6 : 3).map(tech => (
+            {project.technologies.slice(0, featured ? 6 : 3).map((tech, techIdx) => (
               <span
                 key={tech}
-                className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-700"
+                className="neuro-badge hover-glow animate-fade-in-scale px-2.5 py-1 text-xs font-medium text-neutral-700 transition-all hover:scale-110"
+                style={{ animationDelay: `${0.5 + techIdx * 0.1}s` }}
               >
                 {tech}
               </span>
             ))}
             {project.technologies.length > (featured ? 6 : 3) && (
-              <span className="glass rounded-lg px-2 py-1 text-xs font-medium text-neutral-500">
+              <span className="neuro-badge animate-fade-in px-2.5 py-1 text-xs font-medium text-neutral-500">
                 +{project.technologies.length - (featured ? 6 : 3)}
               </span>
             )}
@@ -100,10 +112,10 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               rel="noopener noreferrer"
               className={cn(
                 'neuro-button flex items-center gap-2 px-4 py-2 text-sm font-medium text-neutral-700',
-                'transition-all duration-200'
+                'hover-scale group transition-all duration-200'
               )}
             >
-              <GithubIcon className="h-4 w-4" />
+              <GithubIcon className="h-4 w-4 transition-transform group-hover:rotate-12" />
               Code
             </a>
           )}

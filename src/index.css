@@ -103,27 +103,33 @@ body {
 
 /* Neumorphism Utilities */
 .glass {
-  background: #f9f7f5;
-  box-shadow: 8px 8px 16px rgba(209, 203, 195, 0.4),
-              -8px -8px 16px rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, #fdfcfb 0%, #f9f7f5 100%);
+  box-shadow:
+    12px 12px 24px rgba(209, 203, 195, 0.5),
+    -12px -12px 24px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .glass-dark {
-  background: #e8e4df;
-  box-shadow: inset 4px 4px 8px rgba(209, 203, 195, 0.5),
-              inset -4px -4px 8px rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(232, 228, 223, 0.5);
+  background: linear-gradient(135deg, #e8e4df 0%, #e0dbd5 100%);
+  box-shadow:
+    inset 6px 6px 12px rgba(209, 203, 195, 0.6),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.8),
+    0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(232, 228, 223, 0.8);
 }
 
 .glass-strong {
-  background: #fdfcfb;
-  box-shadow: 12px 12px 24px rgba(209, 203, 195, 0.35),
-              -12px -12px 24px rgba(255, 255, 255, 1);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, #ffffff 0%, #fdfcfb 100%);
+  box-shadow:
+    16px 16px 32px rgba(209, 203, 195, 0.4),
+    -16px -16px 32px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-/* Apple-inspired animations */
+/* Enhanced Animations */
 @keyframes float-gentle {
   0%,
   100% {
@@ -137,7 +143,7 @@ body {
 @keyframes scale-in {
   0% {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   100% {
     opacity: 1;
@@ -148,7 +154,7 @@ body {
 @keyframes slide-up {
   0% {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(30px);
   }
   100% {
     opacity: 1;
@@ -156,65 +162,690 @@ body {
   }
 }
 
+@keyframes slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-scale {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 5px rgba(212, 165, 116, 0.3),
+      0 0 10px rgba(212, 165, 116, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 15px rgba(212, 165, 116, 0.5),
+      0 0 25px rgba(212, 165, 116, 0.3);
+  }
+}
+
+@keyframes rotate-in {
+  0% {
+    opacity: 0;
+    transform: rotate(-10deg) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Text Animations */
+@keyframes text-shimmer {
+  0% {
+    background-position: -500%;
+  }
+  100% {
+    background-position: 500%;
+  }
+}
+
+@keyframes text-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes char-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: var(--color-primary-500);
+  }
+}
+
+/* Animation utility classes */
 .animate-float-gentle {
   animation: float-gentle 3s ease-in-out infinite;
 }
 
 .animate-scale-in {
-  animation: scale-in 0.5s ease-out;
+  animation: scale-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .animate-slide-up {
-  animation: slide-up 0.6s ease-out;
+  animation: slide-up 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-down {
+  animation: slide-down 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-left {
+  animation: slide-left 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-slide-right {
+  animation: slide-right 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+.animate-fade-in-scale {
+  animation: fade-in-scale 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-rotate-in {
+  animation: rotate-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Text Animation Classes */
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-neutral-900) 0%,
+    var(--color-primary-500) 50%,
+    var(--color-neutral-900) 100%
+  );
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: text-shimmer 3s linear infinite;
+}
+
+.text-reveal {
+  animation: text-reveal 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.text-typing {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 3px solid rgba(212, 165, 116, 0.7);
+  white-space: nowrap;
+  animation:
+    typing 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards,
+    blink-caret 0.75s step-end infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-typing {
+    animation: none;
+    border-right: none;
+  }
+}
+
+/* Split text character animation */
+.split-char {
+  display: inline-block;
+  animation: char-fade-in 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* Scroll reveal animations */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition:
+    opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition:
+    opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.scroll-reveal-scale {
+  opacity: 0;
+  transform: scale(0.8);
+  transition:
+    opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.scroll-reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Horizontal Scrolling Carousel */
+.horizontal-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 165, 116, 0.3) transparent;
+  gap: 1.5rem;
+  padding: 1rem 0;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-thumb {
+  background: rgba(212, 165, 116, 0.3);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.horizontal-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 165, 116, 0.5);
+}
+
+.horizontal-scroll-item {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 350px;
+}
+
+@media (min-width: 768px) {
+  .horizontal-scroll-item {
+    width: 400px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .horizontal-scroll-item {
+    width: 450px;
+  }
+}
+
+/* Auto-scroll animation */
+@keyframes auto-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.auto-scroll {
+  animation: auto-scroll 30s linear infinite;
+}
+
+.auto-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Testimonial-style Auto-sliding Carousel */
+.testimonial-carousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.testimonial-track {
+  display: flex;
+  gap: 2rem;
+  animation: testimonial-slide 40s linear infinite;
+}
+
+.testimonial-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes testimonial-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% - 2rem));
+  }
+}
+
+.testimonial-item {
+  flex: 0 0 auto;
+  width: 280px;
+}
+
+@media (min-width: 768px) {
+  .testimonial-item {
+    width: 340px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonial-item {
+    width: 320px;
+  }
+}
+
+/* Fade gradient edges for infinite carousel effect */
+.testimonial-carousel::before,
+.testimonial-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.testimonial-carousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(245, 245, 244, 1), transparent);
+}
+
+.testimonial-carousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(245, 245, 244, 1), transparent);
+}
+
+/* Animation delays for staggered effects */
+.animation-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animation-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animation-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animation-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+}
+
+/* Hover animation utilities */
+.hover-lift {
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.1),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.hover-scale {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+.hover-rotate {
+  transition: transform 0.3s ease;
+}
+
+.hover-rotate:hover {
+  transform: rotate(5deg);
+}
+
+.hover-glow {
+  transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+  box-shadow:
+    0 0 20px rgba(212, 165, 116, 0.4),
+    0 0 40px rgba(212, 165, 116, 0.2);
 }
 
 /* Bento Grid Utilities */
 .bento-card {
-  border-radius: 24px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 28px;
+  /* Spring easing with slight overshoot for playful feel */
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.bento-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
 }
 
 .bento-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 14px 14px 28px rgba(209, 203, 195, 0.4),
-              -14px -14px 28px rgba(255, 255, 255, 0.9);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    18px 18px 36px rgba(209, 203, 195, 0.5),
+    -18px -18px 36px rgba(255, 255, 255, 1),
+    0 4px 20px rgba(212, 165, 116, 0.15);
+}
+
+.bento-card:hover::before {
+  opacity: 1;
 }
 
 /* Neumorphism Button Styles */
 .neuro-button {
-  background: #f9f7f5;
-  border-radius: 16px;
-  box-shadow: 8px 8px 16px rgba(209, 203, 195, 0.4),
-              -8px -8px 16px rgba(255, 255, 255, 0.9);
+  background: linear-gradient(145deg, #fdfcfb, #f3f0ed);
+  border-radius: 18px;
+  box-shadow:
+    10px 10px 20px rgba(209, 203, 195, 0.5),
+    -10px -10px 20px rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
   border: none;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.neuro-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition:
+    width 0.6s,
+    height 0.6s;
 }
 
 .neuro-button:hover {
-  box-shadow: 6px 6px 12px rgba(209, 203, 195, 0.4),
-              -6px -6px 12px rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 16px rgba(209, 203, 195, 0.45),
+    -8px -8px 16px rgba(255, 255, 255, 1),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.neuro-button:hover::before {
+  /* Large enough to cover most button sizes */
+  width: 300px;
+  height: 300px;
 }
 
 .neuro-button:active,
 .neuro-button.active {
-  box-shadow: inset 4px 4px 8px rgba(209, 203, 195, 0.5),
-              inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  transform: translateY(0);
+  box-shadow:
+    inset 6px 6px 12px rgba(209, 203, 195, 0.6),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.8);
 }
 
 .neuro-button-primary {
   background: linear-gradient(145deg, #e8c5a3, #d4a574);
   color: #ffffff;
-  box-shadow: 8px 8px 16px rgba(192, 141, 92, 0.3),
-              -8px -8px 16px rgba(239, 212, 186, 0.3);
+  box-shadow:
+    10px 10px 20px rgba(192, 141, 92, 0.4),
+    -10px -10px 20px rgba(239, 212, 186, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .neuro-button-primary:hover {
   background: linear-gradient(145deg, #efd4ba, #e8c5a3);
-  box-shadow: 6px 6px 12px rgba(192, 141, 92, 0.3),
-              -6px -6px 12px rgba(239, 212, 186, 0.3);
+  box-shadow:
+    8px 8px 16px rgba(192, 141, 92, 0.35),
+    -8px -8px 16px rgba(239, 212, 186, 0.35),
+    0 4px 16px rgba(212, 165, 116, 0.3);
+  transform: translateY(-2px);
 }
 
 .neuro-button-primary:active {
-  box-shadow: inset 4px 4px 8px rgba(192, 141, 92, 0.4),
-              inset -4px -4px 8px rgba(239, 212, 186, 0.4);
+  transform: translateY(0);
+  box-shadow:
+    inset 6px 6px 12px rgba(192, 141, 92, 0.5),
+    inset -6px -6px 12px rgba(239, 212, 186, 0.5);
+}
+
+/* Additional Neumorphic Utilities */
+.neuro-input {
+  background: linear-gradient(145deg, #f9f7f5, #f3f0ed);
+  border-radius: 16px;
+  box-shadow:
+    inset 4px 4px 8px rgba(209, 203, 195, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(232, 228, 223, 0.5);
+  transition: all 0.3s ease;
+}
+
+.neuro-input:focus {
+  outline: none;
+  box-shadow:
+    inset 6px 6px 12px rgba(209, 203, 195, 0.5),
+    inset -6px -6px 12px rgba(255, 255, 255, 1),
+    0 0 0 3px rgba(212, 165, 116, 0.15);
+  border-color: rgba(212, 165, 116, 0.3);
+}
+
+.neuro-badge {
+  background: linear-gradient(145deg, #fdfcfb, #f9f7f5);
+  border-radius: 12px;
+  box-shadow:
+    4px 4px 8px rgba(209, 203, 195, 0.4),
+    -4px -4px 8px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.neuro-card-hover {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neuro-card-hover:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    20px 20px 40px rgba(209, 203, 195, 0.5),
+    -20px -20px 40px rgba(255, 255, 255, 1),
+    0 8px 24px rgba(212, 165, 116, 0.2);
+}
+
+/* Gradient Overlays */
+.gradient-overlay-primary {
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.9) 0%, rgba(166, 117, 72, 0.9) 100%);
+}
+
+.gradient-overlay-accent {
+  background: linear-gradient(135deg, rgba(212, 165, 116, 0.7) 0%, rgba(147, 51, 234, 0.7) 100%);
+}
+
+/* Loading shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* Wide background for smooth shimmer animation */
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Reduced Motion Support for Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .bento-card,
+  .neuro-button,
+  .neuro-card-hover {
+    /* Use gentle easing without overshoot for users who prefer reduced motion */
+    transition-timing-function: ease-in-out !important;
+  }
+
+  .bento-card:hover,
+  .neuro-card-hover:hover {
+    /* Reduce transform effects for reduced motion */
+    transform: none !important;
+  }
 }

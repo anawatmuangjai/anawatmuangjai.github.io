@@ -39,7 +39,7 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
     <section id="skills" className={cn('bg-neutral-50 py-20', className)}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 text-center">
+          <div className="scroll-reveal mb-12 text-center">
             <h2 className="mb-4 text-4xl font-bold text-neutral-900 md:text-5xl">{title}</h2>
             <div className="bg-primary-500 mx-auto h-1 w-24 rounded-full"></div>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-neutral-600">
@@ -48,15 +48,30 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
           </div>
 
           <BentoGrid cols={4} gap="md">
-            {skillCategories.map(category => (
-              <BentoCard key={category.name} className="col-span-1 md:col-span-1 lg:col-span-1">
+            {skillCategories.map((category, idx) => (
+              <BentoCard
+                key={category.name}
+                className={cn(
+                  'scroll-reveal-scale col-span-1 md:col-span-1 lg:col-span-1',
+                  'animate-slide-up hover-lift',
+                  idx === 0 && 'animation-delay-100',
+                  idx === 1 && 'animation-delay-200',
+                  idx === 2 && 'animation-delay-300',
+                  idx === 3 && 'animation-delay-400'
+                )}
+              >
                 <div className="space-y-4">
                   {/* Category Header */}
                   <div className="flex items-center space-x-3">
                     <div
                       className={cn(
                         'flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br',
-                        category.color
+                        category.color,
+                        'animate-rotate-in',
+                        idx === 0 && 'animation-delay-200',
+                        idx === 1 && 'animation-delay-300',
+                        idx === 2 && 'animation-delay-400',
+                        idx === 3 && 'animation-delay-500'
                       )}
                     >
                       <span className="text-2xl">{category.icon}</span>
@@ -66,14 +81,15 @@ export function Skills({ title = 'Skills & Technologies', className }: SkillsPro
 
                   {/* Skills List */}
                   <div className="space-y-2">
-                    {category.skills.map(skill => (
+                    {category.skills.map((skill, skillIdx) => (
                       <div
                         key={skill.name}
-                        className="group glass rounded-xl px-3 py-2 transition-all duration-300 hover:bg-neutral-100"
+                        className="group neuro-badge hover-glow animate-fade-in-scale px-3 py-2 transition-all duration-300 hover:scale-110"
+                        style={{ animationDelay: `${0.3 + idx * 0.15 + skillIdx * 0.1}s` }}
                       >
                         <div className="flex items-center space-x-2">
                           <SkillIcon name={skill.icon || ''} />
-                          <span className="text-sm font-medium text-neutral-700 group-hover:text-neutral-900">
+                          <span className="text-sm font-medium text-neutral-700 transition-colors group-hover:text-neutral-900">
                             {skill.name}
                           </span>
                         </div>

@@ -27,42 +27,37 @@ export function Hero({
   return (
     <section
       id="home"
-      className={cn(
-        'relative min-h-screen py-20',
-        'bg-neutral-50',
-        'overflow-hidden',
-        className
-      )}
+      className={cn('relative min-h-screen py-20', 'bg-neutral-50', 'overflow-hidden', className)}
     >
       {/* Background Gradient Orbs */}
       <div className="absolute inset-0 opacity-20">
         <div className="bg-primary-300 animate-blob absolute top-20 left-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-2000 absolute top-40 right-20 h-96 w-96 rounded-full bg-primary-200 mix-blend-multiply blur-3xl filter"></div>
-        <div className="animate-blob animation-delay-4000 absolute bottom-20 left-1/3 h-96 w-96 rounded-full bg-primary-100 mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-2000 bg-primary-200 absolute top-40 right-20 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
+        <div className="animate-blob animation-delay-4000 bg-primary-100 absolute bottom-20 left-1/3 h-96 w-96 rounded-full mix-blend-multiply blur-3xl filter"></div>
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <BentoGrid cols={6} gap="md">
           {/* Main Profile Card - Spans 4 columns on desktop */}
           <BentoCard
-            className="col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-2"
+            className="animate-fade-in-scale col-span-1 md:col-span-2 lg:col-span-4 lg:row-span-2"
             glassVariant="strong"
           >
             <div className="flex h-full flex-col justify-between">
               <div className="space-y-6">
-                <div className="glass inline-flex items-center rounded-full px-4 py-2">
+                <div className="glass animate-pulse-glow inline-flex items-center rounded-full px-4 py-2">
                   <div className="mr-2 h-2 w-2 animate-pulse rounded-full bg-green-500"></div>
                   <span className="text-sm font-medium text-neutral-700">Available for work</span>
                 </div>
 
                 <div>
-                  <h1 className="mb-3 text-5xl leading-tight font-bold text-neutral-900 md:text-6xl lg:text-7xl">
-                    <span className="block text-balance">{headline}</span>
+                  <h1 className="animate-slide-down mb-3 text-5xl leading-tight font-bold text-neutral-900 md:text-6xl lg:text-7xl">
+                    <span className="text-typing block">{headline}</span>
                   </h1>
-                  <h2 className="text-primary-600 mb-6 text-2xl font-semibold lg:text-3xl">
+                  <h2 className="text-primary-600 animate-slide-up animation-delay-200 mb-6 text-2xl font-semibold lg:text-3xl">
                     {subheadline}
                   </h2>
-                  <p className="text-lg leading-relaxed text-pretty text-neutral-600 lg:text-xl">
+                  <p className="animate-fade-in animation-delay-300 text-lg leading-relaxed text-pretty text-neutral-600 lg:text-xl">
                     {description}
                   </p>
                 </div>
@@ -73,15 +68,16 @@ export function Hero({
                 <a
                   href={primaryCTA.href}
                   className={cn(
-                    'neuro-button neuro-button-primary',
+                    'neuro-button neuro-button-primary hover-lift',
                     'inline-flex items-center justify-center',
                     'px-8 py-4 text-base font-semibold',
-                    'transition-all duration-200'
+                    'transition-all duration-200',
+                    'animate-slide-up animation-delay-400'
                   )}
                 >
                   {primaryCTA.text}
                   <svg
-                    className="ml-2 h-5 w-5"
+                    className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -99,11 +95,12 @@ export function Hero({
                   <a
                     href={secondaryCTA.href}
                     className={cn(
-                      'neuro-button',
+                      'neuro-button hover-lift',
                       'inline-flex items-center justify-center',
                       'px-8 py-4 text-base font-semibold',
                       'text-neutral-700',
-                      'transition-all duration-200'
+                      'transition-all duration-200',
+                      'animate-slide-up animation-delay-500'
                     )}
                   >
                     {secondaryCTA.text}
@@ -114,7 +111,10 @@ export function Hero({
           </BentoCard>
 
           {/* Profile Image Card */}
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-2" padding="none">
+          <BentoCard
+            className="animate-scale-in animation-delay-200 col-span-1 md:col-span-1 lg:col-span-2"
+            padding="none"
+          >
             <div className="relative h-full min-h-[280px] overflow-hidden">
               <div className="from-primary-500 absolute inset-0 bg-gradient-to-br to-purple-600 opacity-90"></div>
               <div className="absolute inset-0 flex items-center justify-center">
@@ -130,14 +130,14 @@ export function Hero({
           </BentoCard>
 
           {/* Quick Stats Cards */}
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1">
+          <BentoCard className="animate-bounce-in animation-delay-300 hover-lift col-span-1 md:col-span-1 lg:col-span-1">
             <div className="text-center">
               <div className="text-primary-600 mb-2 text-4xl font-bold">5+</div>
               <div className="text-sm font-medium text-neutral-600">Years Experience</div>
             </div>
           </BentoCard>
 
-          <BentoCard className="col-span-1 md:col-span-1 lg:col-span-1">
+          <BentoCard className="animate-bounce-in animation-delay-400 hover-lift col-span-1 md:col-span-1 lg:col-span-1">
             <div className="text-center">
               <div className="text-primary-600 mb-2 text-4xl font-bold">20+</div>
               <div className="text-sm font-medium text-neutral-600">Projects</div>
@@ -146,17 +146,19 @@ export function Hero({
 
           {/* Mini Terminal Card */}
           <BentoCard
-            className="col-span-1 md:col-span-2 lg:col-span-3"
+            className="animate-slide-left animation-delay-500 col-span-1 md:col-span-2 lg:col-span-3"
             glassVariant="dark"
             padding="md"
           >
             <div className="space-y-2 font-mono text-sm">
-              <div className="flex items-center text-green-400">
+              <div className="animate-slide-right flex items-center text-green-400">
                 <span className="mr-2">❯</span>
                 <span className="text-white">npm run dev</span>
               </div>
-              <div className="text-neutral-300">🚀 Server running at localhost:3000</div>
-              <div className="flex items-center text-green-400">
+              <div className="animate-fade-in animation-delay-200 text-neutral-300">
+                🚀 Server running at localhost:3000
+              </div>
+              <div className="animate-slide-right animation-delay-300 flex items-center text-green-400">
                 <span className="mr-2">❯</span>
                 <span className="animate-pulse text-white">|</span>
               </div>
@@ -164,14 +166,15 @@ export function Hero({
           </BentoCard>
 
           {/* Tech Stack Card */}
-          <BentoCard className="col-span-1 md:col-span-2 lg:col-span-3">
+          <BentoCard className="animate-slide-right animation-delay-600 col-span-1 md:col-span-2 lg:col-span-3">
             <div className="space-y-3">
               <h3 className="text-lg font-bold text-neutral-900">Tech Stack</h3>
               <div className="flex flex-wrap gap-2">
-                {['React', 'TypeScript', '.NET', 'Tailwind'].map(tech => (
+                {['React', 'TypeScript', '.NET', 'Tailwind'].map((tech, idx) => (
                   <span
                     key={tech}
-                    className="glass rounded-xl px-3 py-1.5 text-sm font-medium text-neutral-700"
+                    className="neuro-badge hover-glow animate-fade-in-scale px-3 py-1.5 text-sm font-medium text-neutral-700 transition-all hover:scale-110"
+                    style={{ animationDelay: `${0.7 + idx * 0.1}s` }}
                   >
                     {tech}
                   </span>
